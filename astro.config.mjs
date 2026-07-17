@@ -1,5 +1,5 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
-
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  site: 'https://Haplo66.github.io',
+  base: '/honeycomb-arts-bakes',
+});

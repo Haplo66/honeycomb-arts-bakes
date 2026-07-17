@@ -1,0 +1,7 @@
+---
+import Logo from './Logo.astro';
+const path = Astro.url.pathname;
+const links=[['bakery','Bakery'],['sewing','Sewing & Crafts'],['gallery','Gallery'],['about','Our Story']];
+---
+<header class="site-header"><div class="container header-inner"><Logo/><nav aria-label="Primary navigation">{links.map(([href,label])=><a class:list={{active:path.endsWith(`/${href}`)}} href={href}>{label}</a>)}</nav><a class="header-cta" href="contact">Get in touch <span>→</span></a></div></header>
+<style>.site-header{background:rgba(255,249,241,.92);border-bottom:1px solid rgba(74,51,38,.08);position:relative;z-index:3}.header-inner{align-items:center;display:flex;height:82px;justify-content:space-between}.header-inner nav{display:flex;gap:1.55rem;margin-left:auto;margin-right:2rem}.header-inner nav a{color:var(--muted);font-size:.84rem;font-weight:600;position:relative}.header-inner nav a:after{background:var(--honey);bottom:-.48rem;content:'';height:2px;left:0;position:absolute;transform:scaleX(0);transition:transform .2s;width:100%}.header-inner nav a:hover:after,.header-inner nav a.active:after{transform:scaleX(1)}.header-cta{font-size:.85rem;font-weight:600}.header-cta span{color:var(--honey);font-size:1.15rem;margin-left:.3rem}@media(max-width:760px){.header-inner{height:72px}.header-inner nav{display:none}.header-cta{font-size:.78rem}}</style>
