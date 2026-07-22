@@ -529,6 +529,28 @@ Each item contains:
 
 Prepare final submission method.
 
+create src/utils/submission.ts
+Responsibilities:
+
+validate order exists
+prepare JSON payload
+send POST request
+return success/error result
+Checkout Page
+      |
+      ↓
+submission.ts
+      |
+      ↓
+Order Handler Endpoint
+      |
+      ↓
+Google Apps Script
+      |
+      ├── Email notification
+      |
+      └── Google Sheet order log
+
 Possible options:
 
 - Email submission

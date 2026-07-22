@@ -82,9 +82,9 @@ import MainLayout from '../layouts/MainLayout.astro';
 
       <section class="checkout-confirmation" data-checkout-confirmation hidden>
         <span class="eyebrow">Prepared</span>
-        <h2>Order prepared successfully</h2>
-        <p>Your order payload is ready for the future submission step.</p>
-        <pre data-checkout-order-preview></pre>
+        <h2 data-checkout-result-title>Order prepared successfully</h2>
+        <p data-checkout-result-message></p>
+        <p class="checkout-confirmation__reference" data-checkout-result-reference hidden></p>
       </section>
     </div>
 
@@ -117,6 +117,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 <script>
   import { getCart } from '../utils/cart';
   import { createOrderFromCart } from '../utils/order';
+  import { submitOrder } from '../utils/submission';
 
   const checkoutReady = document.querySelector('[data-checkout-ready]');
   const checkoutForm = document.querySelector('[data-checkout-form]');
@@ -127,7 +128,9 @@ import MainLayout from '../layouts/MainLayout.astro';
   const template = document.querySelector('#checkout-item-template');
   const checkoutError = document.querySelector('[data-checkout-error]');
   const confirmation = document.querySelector('[data-checkout-confirmation]');
-  const orderPreview = document.querySelector('[data-checkout-order-preview]');
+  const resultTitle = document.querySelector('[data-checkout-result-title]');
+  const resultMessage = document.querySelector('[data-checkout-result-message]');
+  const resultReference = document.querySelector('[data-checkout-result-reference]');
 
   const formatLabel = (value) =>
     value
@@ -149,7 +152,12 @@ import MainLayout from '../layouts/MainLayout.astro';
     }
 
     if (confirmation) confirmation.hidden = true;
-    if (orderPreview) orderPreview.textContent = '';
+    if (resultTitle) resultTitle.textContent = 'Order prepared successfully';
+    if (resultMessage) resultMessage.textContent = '';
+    if (resultReference) {
+      resultReference.textContent = '';
+      resultReference.hidden = true;
+    }
   };
 
   const renderCheckout = () => {
@@ -224,8 +232,27 @@ import MainLayout from '../layouts/MainLayout.astro';
       additionalNotes: getFieldValue(formData, 'additionalNotes'),
     };
 
-    if (confirmation) confirmation.hidden = false;
-    if (orderPreview) orderPreview.textContent = JSON.stringify(order, null, 2);
+    const result = submitOrder(order);
+
+    if (result.success) {
+      if (confirmation) confirmation.hidden = false;
+      if (resultTitle) resultTitle.textContent = 'Order prepared successfully';
+      if (resultMessage) {
+        resultMessage.textContent =
+          result.message || 'Your order is ready for the future submission step.';
+      }
+      if (resultReference && result.orderId) {
+        resultReference.textContent = `Reference: ${result.orderId}`;
+        resultReference.hidden = false;
+      }
+      return;
+    }
+
+    if (checkoutError) {
+      checkoutError.textContent =
+        result.error || 'We could not prepare this order yet. Please review your details.';
+      checkoutError.hidden = false;
+    }
   });
 
   window.addEventListener('honeycomb-cart:updated', renderCheckout);
@@ -263,8 +290,8 @@ import MainLayout from '../layouts/MainLayout.astro';
   .summary-item__notes:empty{display:none}
   .checkout-confirmation{background:#f6eddf;border:1px solid var(--line);border-radius:1.1rem;grid-column:1/-1;padding:1.5rem}
   .checkout-confirmation h2{font-family:'Playfair Display',Georgia,serif;font-size:1.8rem;font-weight:500;letter-spacing:-.035em;margin:.5rem 0 .35rem}
-  .checkout-confirmation p{color:var(--muted);margin:0 0 1rem}
-  .checkout-confirmation pre{background:#fffdfa;border:1px solid var(--line);border-radius:.75rem;color:var(--cocoa);font-size:.78rem;line-height:1.5;margin:0;max-height:22rem;overflow:auto;padding:1rem;white-space:pre-wrap}
+  .checkout-confirmation p{color:var(--muted);margin:0}
+  .checkout-confirmation__reference{font-size:.86rem;font-weight:600;margin-top:.55rem}
   .checkout-empty{padding:2rem}
   .checkout-empty h2{font-family:'Playfair Display',Georgia,serif;font-size:2rem;font-weight:500;letter-spacing:-.04em;margin:0 0 .5rem}
   .checkout-empty p{color:var(--muted);margin:0 0 1.25rem}
