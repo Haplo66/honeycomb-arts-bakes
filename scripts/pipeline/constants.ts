@@ -5,7 +5,7 @@ export const PIPELINE_VERSION = 1;
 
 export const PROJECT_ROOT = process.cwd();
 export const IMPORT_DIR = path.join(PROJECT_ROOT, 'data', 'import');
-export const OUTPUT_DIR = path.join(PROJECT_ROOT, 'src', 'data');
+export const OUTPUT_DIR = path.join(PROJECT_ROOT, 'src', 'content');
 
 export const IMPORT_FILES = {
   collections: 'collections.csv',

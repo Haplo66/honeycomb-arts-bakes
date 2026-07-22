@@ -1,5 +1,5 @@
 import type { Product } from '../types/product';
-import productRecords from './products.json';
+import productRecords from '../content/products.json';
 
 type GeneratedData<T> = {
   data: T[];

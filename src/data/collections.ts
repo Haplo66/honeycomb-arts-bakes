@@ -1,5 +1,5 @@
 import type { Collection, CollectionCategory } from '../types/collection';
-import collectionRecords from './collections.json';
+import collectionRecords from '../content/collections.json';
 
 type GeneratedData<T> = {
   data: T[];

@@ -1,5 +1,5 @@
 import type { Form } from '../types/form';
-import formRecords from './forms.json';
+import formRecords from '../content/forms.json';
 
 type GeneratedData<T> = {
   data: T[];
