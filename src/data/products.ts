@@ -105,22 +105,3 @@ export const getProductsByCollection = (
     products.filter((product) => product.collectionId === collectionId),
   );
 
-/** Returns an active product matching the slug. */
-export const getProductBySlug = (
-  slug: string,
-): Product | undefined =>
-  products.find(
-    (product) => product.slug === slug && product.active,
-  );
-
-/** Returns an active product matching both collection ID and slug. */
-export const getProductByCollectionAndSlug = (
-  collectionId: string,
-  slug: string,
-): Product | undefined =>
-  products.find(
-    (product) =>
-      product.collectionId === collectionId &&
-      product.slug === slug &&
-      product.active,
-  );

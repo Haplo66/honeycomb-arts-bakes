@@ -1,5 +1,6 @@
 ---
 import type { Collection } from '../types/collection';
+import { collectionPath } from '../utils/paths';
 
 interface Props {
   collection: Collection;
@@ -7,10 +8,11 @@ interface Props {
 
 const { collection } = Astro.props;
 const cardStyle = collection.heroImage ? `background-image: url(${collection.heroImage});` : undefined;
+const href = collectionPath(collection.category, collection.slug);
 ---
 
 <article class="collection-card" id={collection.slug}>
-  <a class="collection-card__link" href={`${collection.category}/${collection.slug}`} aria-label={`Explore the ${collection.title} collection`}>
+  <a class="collection-card__link" href={href} aria-label={`Explore the ${collection.title} collection`}>
     <div class:list={['collection-card__image', `image-panel--${collection.imageTone}`]} style={cardStyle} role="img" aria-label={collection.heroImage ? `${collection.title} collection` : `${collection.title} collection image placeholder`}>
       {collection.badge && <span class="collection-card__badge">{collection.badge}</span>}
       <span class="collection-card__image-label">{collection.subtitle}</span>

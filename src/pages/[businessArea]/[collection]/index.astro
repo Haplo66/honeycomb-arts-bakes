@@ -1,0 +1,29 @@
+---
+import CollectionDetail from '../../../components/CollectionDetail.astro';
+import MainLayout from '../../../layouts/MainLayout.astro';
+import { getAllCollections } from '../../../data/collections';
+import type { Collection } from '../../../types/collection';
+
+export function getStaticPaths() {
+  return getAllCollections().map((collection) => ({
+    params: {
+      businessArea: collection.category,
+      collection: collection.slug,
+    },
+    props: { collection },
+  }));
+}
+
+interface Props {
+  collection: Collection;
+}
+
+const { collection } = Astro.props;
+---
+
+<MainLayout
+  title={`${collection.title} | Honeycomb Arts & Bakes`}
+  description={collection.shortDescription}
+>
+  <CollectionDetail collection={collection} />
+</MainLayout>

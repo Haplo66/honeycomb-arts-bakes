@@ -2,6 +2,7 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import CartItem from '../components/cart/CartItem.astro';
 import CartSummary from '../components/cart/CartSummary.astro';
+import { sitePath } from '../utils/paths';
 ---
 
 <MainLayout
@@ -24,8 +25,8 @@ import CartSummary from '../components/cart/CartSummary.astro';
         <h2>Your cart is empty</h2>
         <p>Start with a bakery treat or a handmade sewing piece.</p>
         <div class="cart-empty__links">
-          <a class="button button--honey" href="bakery">Browse bakery</a>
-          <a class="button button--light" href="sewing">Browse sewing</a>
+          <a class="button button--honey" href={sitePath('bakery')}>Browse bakery</a>
+          <a class="button button--light" href={sitePath('sewing')}>Browse sewing</a>
         </div>
       </div>
 
@@ -43,6 +44,7 @@ import CartSummary from '../components/cart/CartSummary.astro';
     removeFromCart,
     updateCartItemQuantity,
   } from '../utils/cart';
+  import { formatLabel, formatValue } from '../utils/format';
 
   const cartList = document.querySelector('[data-cart-list]');
   const emptyState = document.querySelector('[data-cart-empty]');
@@ -51,12 +53,6 @@ import CartSummary from '../components/cart/CartSummary.astro';
   const totalCount = document.querySelector('[data-cart-total-count]');
   const totalLabel = document.querySelector('[data-cart-total-label]');
   const template = document.querySelector('#cart-item-template');
-
-  const formatLabel = (value) =>
-    value.replace(/([A-Z])/g, ' $1').replace(/[-_]/g, ' ').replace(/\b\w/g, (letter) => letter.toUpperCase()).trim();
-
-  const formatValue = (value) =>
-    Array.isArray(value) ? value.join(', ') : String(value);
 
   const updateSummary = (cart) => {
     const count = cart.items.reduce((total, item) => total + item.quantity, 0);

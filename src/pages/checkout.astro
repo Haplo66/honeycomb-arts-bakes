@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { sitePath } from '../utils/paths';
 ---
 
 <MainLayout
@@ -92,8 +93,8 @@ import MainLayout from '../layouts/MainLayout.astro';
       <h2>Your cart is empty</h2>
       <p>Start with a bakery treat or a handmade sewing piece.</p>
       <div class="checkout-empty__links">
-        <a class="button button--honey" href="bakery">Browse bakery</a>
-        <a class="button button--light" href="sewing">Browse sewing</a>
+        <a class="button button--honey" href={sitePath('bakery')}>Browse bakery</a>
+        <a class="button button--light" href={sitePath('sewing')}>Browse sewing</a>
       </div>
     </div>
   </section>
@@ -116,6 +117,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 
 <script>
   import { getCart } from '../utils/cart';
+  import { formatLabel, formatValue } from '../utils/format';
   import { createOrderFromCart } from '../utils/order';
   import { submitOrder } from '../utils/submission';
 
@@ -131,16 +133,6 @@ import MainLayout from '../layouts/MainLayout.astro';
   const resultTitle = document.querySelector('[data-checkout-result-title]');
   const resultMessage = document.querySelector('[data-checkout-result-message]');
   const resultReference = document.querySelector('[data-checkout-result-reference]');
-
-  const formatLabel = (value) =>
-    value
-      .replace(/([A-Z])/g, ' $1')
-      .replace(/[-_]/g, ' ')
-      .replace(/\b\w/g, (letter) => letter.toUpperCase())
-      .trim();
-
-  const formatValue = (value) =>
-    Array.isArray(value) ? value.join(', ') : String(value);
 
   const getFieldValue = (formData, fieldName) =>
     String(formData.get(fieldName) || '').trim();

@@ -1,5 +1,6 @@
 ---
 import Logo from './Logo.astro';
+import { sitePath } from '../utils/paths';
 
 const path = Astro.url.pathname;
 const links = [
@@ -19,7 +20,7 @@ const links = [
         links.map(([href, label]) => (
           <a
             class:list={{ active: path.endsWith(`/${href}`) }}
-            href={href}
+            href={sitePath(href)}
           >
             {label}
           </a>
@@ -31,13 +32,13 @@ const links = [
       <a
         class="cart-link"
         class:list={{ active: path.endsWith('/cart') }}
-        href="cart"
+        href={sitePath('cart')}
         aria-label="Cart"
       >
         Cart (<span data-cart-count>0</span>)
       </a>
 
-      <a class="header-cta" href="contact">
+      <a class="header-cta" href={sitePath('contact')}>
         Get in touch <span>→</span>
       </a>
     </div>

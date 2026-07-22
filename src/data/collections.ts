@@ -33,5 +33,4 @@ const orderedActive = (items: readonly Collection[]) => items.filter((collection
 export const getAllCollections = (): Collection[] => orderedActive(collections);
 export const getBakeryCollections = (): Collection[] => getCollectionsByCategory('bakery');
 export const getSewingCollections = (): Collection[] => getCollectionsByCategory('sewing');
-export const getCollectionBySlug = (slug: string): Collection | undefined => collections.find((collection) => collection.slug === slug && collection.active);
 export const getCollectionsByCategory = (category: CollectionCategory): Collection[] => orderedActive(collections.filter((collection) => collection.category === category));

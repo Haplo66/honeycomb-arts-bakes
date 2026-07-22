@@ -4,6 +4,7 @@ import FormRenderer from '../../../components/forms/FormRenderer.astro';
 import { getFormById } from '../../../data/forms';
 import { getAllProducts } from '../../../data/products';
 import { collections } from '../../../data/collections';
+import { sitePath } from '../../../utils/paths';
 import type { Product } from '../../../types/product';
 
 export async function getStaticPaths() {
@@ -63,7 +64,6 @@ const businessAreaTitle =
     ? 'Bakery'
     : 'Sewing Studio';
 
-const baseUrl = import.meta.env.BASE_URL;
 const productForm = product.formId ? getFormById(product.formId) : undefined;
 const cartForm = productForm || {
   id: `${product.id}-cart-form`,
@@ -79,7 +79,7 @@ const cartForm = productForm || {
   <div class="product-detail">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href={`${baseUrl}${product.businessArea}`}>
+        <a href={sitePath(product.businessArea)}>
           {businessAreaTitle}
         </a>
 

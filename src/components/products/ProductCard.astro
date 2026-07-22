@@ -1,5 +1,7 @@
 ---
 import type { Product } from '../../types/product';
+import { collections } from '../../data/collections';
+import { productPath } from '../../utils/paths';
 
 interface Props {
   product: Product;
@@ -9,6 +11,10 @@ const { product } = Astro.props;
 
 const imageTone = product.imageTone || 'cream';
 const cardStyle = product.image ? `background-image: url(${product.image});` : undefined;
+const collection = collections.find((item) => item.id === product.collectionId);
+const collectionSlug =
+  collection?.slug || product.collectionId.replace(`${product.businessArea}-`, '');
+const href = productPath(product.businessArea, collectionSlug, product.slug);
 
 const statusLabels: Record<string, string> = {
   available: 'Available',
@@ -21,7 +27,7 @@ const statusLabel = statusLabels[product.status] || product.status;
 ---
 
 <article class="product-card" id={product.slug}>
-<div class="product-card__link">
+  <a class="product-card__link" href={href}>
     <div
       class:list={['product-card__image', `image-panel--${imageTone}`]}
       style={cardStyle}
@@ -41,7 +47,7 @@ const statusLabel = statusLabels[product.status] || product.status;
         View Details <span aria-hidden="true">→</span>
       </span>
     </div>
-  </div>
+  </a>
 </article>
 
 <style>

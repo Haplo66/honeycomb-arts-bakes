@@ -1,7 +1,9 @@
 ---
+import { sitePath } from '../utils/paths';
+
 const { compact = false } = Astro.props;
 ---
-<a class:list={['logo',{compact}]} href="." aria-label="Honeycomb Arts & Bakes home">
+<a class:list={['logo',{compact}]} href={sitePath()} aria-label="Honeycomb Arts & Bakes home">
   <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 3 56 17v30L32 61 8 47V17Z"/><path d="M18 40c4-11 7-16 11-19m-6 6 10 2m-7 4 9 2M39 21v18m-5-13h10m-10 5h10m-10 5h10"/><circle cx="33" cy="15" r="3"/><path d="M30 14c-4-4-8-1-7 3 2 3 5 2 7-1m6-2c4-4 8-1 7 3-2 3-5 2-7-1"/></svg>
   <span><strong>Honeycomb</strong><small>Arts &amp; Bakes</small></span>
 </a>
