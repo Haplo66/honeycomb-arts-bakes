@@ -11,6 +11,8 @@ export const forms: readonly Form[] = [
         label: 'Flavor',
         type: 'select',
         required: true,
+        section: 'Cake Details',
+        defaultValue: 'vanilla',
         options: [
           { value: 'vanilla', label: 'Vanilla' },
           { value: 'chocolate', label: 'Chocolate' },
@@ -23,6 +25,7 @@ export const forms: readonly Form[] = [
         label: 'Size',
         type: 'select',
         required: true,
+        section: 'Cake Details',
         options: [
           { value: 'six-inch', label: '6 inch' },
           { value: 'eight-inch', label: '8 inch' },
@@ -34,8 +37,12 @@ export const forms: readonly Form[] = [
         label: 'Message',
         type: 'text',
         required: false,
+        section: 'Decoration',
         placeholder: 'Happy birthday, Maya!',
         helpText: 'Optional short message for the cake.',
+        validation: {
+          maxLength: 60,
+        },
       },
     ],
   },
@@ -48,6 +55,8 @@ export const forms: readonly Form[] = [
         label: 'Size',
         type: 'select',
         required: true,
+        section: 'Fit',
+        defaultValue: 'medium',
         options: [
           { value: 'small', label: 'Small' },
           { value: 'medium', label: 'Medium' },
@@ -60,6 +69,8 @@ export const forms: readonly Form[] = [
         label: 'Color',
         type: 'select',
         required: true,
+        section: 'Design',
+        defaultValue: 'cream',
         options: [
           { value: 'cream', label: 'Cream' },
           { value: 'sage', label: 'Sage' },
@@ -72,6 +83,7 @@ export const forms: readonly Form[] = [
         label: 'Theme',
         type: 'select',
         required: false,
+        section: 'Design',
         options: [
           { value: 'floral', label: 'Floral' },
           { value: 'birthday', label: 'Birthday' },
@@ -84,8 +96,13 @@ export const forms: readonly Form[] = [
         label: 'Theme Description',
         type: 'textarea',
         required: false,
+        section: 'Design',
         placeholder: 'Share the look, colors, or wording you have in mind.',
         helpText: 'Shown when Theme is Other.',
+        validation: {
+          minLength: 10,
+          maxLength: 240,
+        },
         condition: {
           fieldId: 'theme',
           equals: 'other',

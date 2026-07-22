@@ -23,16 +23,26 @@ export interface FormCondition {
   equals: string | number | boolean;
 }
 
+/** Optional browser validation attributes for supported form fields. */
+export interface FormFieldValidation {
+  minLength?: number;
+  maxLength?: number;
+  pattern?: string;
+}
+
 /** Data-driven field definition for future product customization forms. */
 export interface FormField {
   id: string;
   label: string;
   type: FormFieldType;
   required: boolean;
+  section?: string;
   placeholder?: string;
   helpText?: string;
+  defaultValue?: string;
   options?: FormOption[];
   condition?: FormCondition;
+  validation?: FormFieldValidation;
 }
 
 /** Reusable form definition referenced by product form IDs. */

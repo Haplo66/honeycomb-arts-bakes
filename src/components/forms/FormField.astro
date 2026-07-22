@@ -9,6 +9,11 @@ const { field } = Astro.props;
 const fieldId = `field-${field.id}`;
 const hasOptions = Boolean(field.options?.length);
 const inputType = field.type === 'phone' ? 'tel' : field.type;
+const validationAttributes = {
+  minlength: field.validation?.minLength,
+  maxlength: field.validation?.maxLength,
+  pattern: field.validation?.pattern,
+};
 ---
 
 <div
@@ -31,8 +36,11 @@ const inputType = field.type === 'phone' ? 'tel' : field.type;
         required={field.required}
         data-required={field.required ? 'true' : 'false'}
         placeholder={field.placeholder}
+        {...validationAttributes}
         rows="4"
-      />
+      >
+        {field.defaultValue}
+      </textarea>
     ) : field.type === 'select' || field.type === 'multiselect' ? (
       <label for={fieldId}>
         {field.label}
@@ -48,7 +56,12 @@ const inputType = field.type === 'phone' ? 'tel' : field.type;
       >
         {field.type === 'select' && <option value="">Select one</option>}
         {field.options?.map((option) => (
-          <option value={option.value}>{option.label}</option>
+          <option
+            value={option.value}
+            selected={option.value === field.defaultValue}
+          >
+            {option.label}
+          </option>
         ))}
       </select>
     ) : field.type === 'radio' && hasOptions ? (
@@ -119,6 +132,8 @@ const inputType = field.type === 'phone' ? 'tel' : field.type;
         required={field.required}
         data-required={field.required ? 'true' : 'false'}
         placeholder={field.placeholder}
+        value={field.defaultValue}
+        {...validationAttributes}
       />
     )
   }
