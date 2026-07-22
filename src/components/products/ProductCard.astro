@@ -2,6 +2,7 @@
 import type { Product } from '../../types/product';
 import { collections } from '../../data/collections';
 import { productPath } from '../../utils/paths';
+import { getProductPrimaryImage } from '../../utils/images';
 
 interface Props {
   product: Product;
@@ -10,7 +11,8 @@ interface Props {
 const { product } = Astro.props;
 
 const imageTone = product.imageTone || 'cream';
-const cardStyle = product.image ? `background-image: url(${product.image});` : undefined;
+const primaryImage = getProductPrimaryImage(product);
+const cardStyle = primaryImage ? `background-image: url(${primaryImage});` : undefined;
 const collection = collections.find((item) => item.id === product.collectionId);
 const collectionSlug =
   collection?.slug || product.collectionId.replace(`${product.businessArea}-`, '');
@@ -32,7 +34,7 @@ const statusLabel = statusLabels[product.status] || product.status;
       class:list={['product-card__image', `image-panel--${imageTone}`]}
       style={cardStyle}
       role="img"
-      aria-label={product.image ? product.title : `${product.title} image placeholder`}
+      aria-label={primaryImage ? product.title : `${product.title} image placeholder`}
     >
       <span class:list={['product-card__status', `product-card__status--${product.status}`]}>
         {statusLabel}

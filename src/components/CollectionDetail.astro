@@ -1,9 +1,11 @@
 ---
 import SectionTitle from './SectionTitle.astro';
 import type { Collection } from '../types/collection';
+import { getCollectionPrimaryImage } from '../utils/images';
 interface Props { collection: Collection }
 const { collection } = Astro.props;
-const heroStyle = collection.heroImage ? `background-image: url(${collection.heroImage});` : undefined;
+const primaryImage = getCollectionPrimaryImage(collection);
+const heroStyle = primaryImage ? `background-image: url(${primaryImage});` : undefined;
 ---
 <section class={`collection-hero image-panel--${collection.imageTone}`} style={heroStyle}><div class="container"><span class="eyebrow">{collection.category} collection</span><h1 class="display">{collection.title}</h1><p>{collection.subtitle}</p></div></section>
 <section class="section"><div class="container intro"><span class="eyebrow">About this collection</span><p>{collection.description}</p></div></section>
