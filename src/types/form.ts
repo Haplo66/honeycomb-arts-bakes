@@ -48,6 +48,10 @@ export interface FormField {
 /** Reusable form definition referenced by product form IDs. */
 export interface Form {
   id: string;
+  /** Sheet-friendly form name. */
+  name: string;
+  description?: string;
+  /** UI-facing title retained for existing renderers. */
   title: string;
   fields: FormField[];
 }

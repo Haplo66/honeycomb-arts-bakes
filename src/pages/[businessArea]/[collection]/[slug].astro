@@ -1,7 +1,6 @@
 ---
 import MainLayout from '../../../layouts/MainLayout.astro';
 import FormRenderer from '../../../components/forms/FormRenderer.astro';
-import { getFormById } from '../../../data/forms';
 import { getAllProducts } from '../../../data/products';
 import { collections } from '../../../data/collections';
 import { sitePath } from '../../../utils/paths';
@@ -64,12 +63,6 @@ const businessAreaTitle =
     ? 'Bakery'
     : 'Sewing Studio';
 
-const productForm = product.formId ? getFormById(product.formId) : undefined;
-const cartForm = productForm || {
-  id: `${product.id}-cart-form`,
-  title: product.title,
-  fields: [],
-};
 ---
 
 <MainLayout
@@ -160,7 +153,8 @@ const cartForm = productForm || {
           </div>
 
           <FormRenderer
-            form={cartForm}
+            formId={product.formId}
+            fallbackTitle={product.title}
             product={{
               collectionId: product.collectionId,
               productId: product.id,

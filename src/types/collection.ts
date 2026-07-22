@@ -16,17 +16,25 @@ export interface CollectionGalleryImage {
 export interface Collection {
   id: string;
   category: CollectionCategory;
+  /** Sheet-friendly business area alias. */
+  businessArea?: CollectionCategory;
   slug: string;
   title: string;
+  /** Sheet-friendly collection name. */
+  name?: string;
   subtitle: string;
   shortDescription: string;
   description: string;
+  /** Folder that contains collection imagery in future asset-backed imports. */
+  imageFolder?: string;
   heroImage: string | null;
   galleryImages: CollectionGalleryImage[];
   popularIdeas: string[];
   customizationNote: string;
   featured: boolean;
   active: boolean;
+  /** Sheet-friendly visibility or lifecycle label. */
+  status?: 'Active' | 'Inactive';
   displayOrder: number;
   imageTone: CollectionImageTone;
   /** Optional label reserved for launches such as “Coming soon” or “Seasonal”. */

@@ -27,6 +27,9 @@ export interface Product {
   /** Parent collection identifier. */
   collectionId: string;
 
+  /** Source collection identifier, kept sheet-friendly for future imports. */
+  collection?: string;
+
   /** Specific product type. */
   category: ProductCategory;
 
@@ -38,6 +41,9 @@ export interface Product {
 
   title: string;
 
+  /** Sheet-friendly product name. */
+  name?: string;
+
   subtitle?: string;
 
   shortDescription: string;
@@ -46,6 +52,9 @@ export interface Product {
 
   /** Optional product image path. */
   image: string | null;
+
+  /** Folder that contains product imagery in future asset-backed imports. */
+  imageFolder?: string;
 
   /** Placeholder styling when image is unavailable. */
   imageTone?: CollectionImageTone;

@@ -1,92 +1,33 @@
 import type { Product } from '../types/product';
+import productRecords from './products.json';
 
-/** Seed data for products across Bakery and Sewing collections. */
-export const products: readonly Product[] = [
-  {
-    id: 'bakery-cakes-birthday-cake',
-    collectionId: 'bakery-cakes',
-    category: 'cake',
-    businessArea: 'bakery',
-    slug: 'birthday-cake',
-    title: 'Birthday Cake',
-    subtitle: 'Classic layers made to celebrate.',
-    shortDescription:
-      'Customizable layer cake with your choice of flavor, frosting, and message.',
-    description:
-      'Our signature birthday cake features light, tender layers paired with rich buttercream. Crafted in small batches and finished with custom details for your special day.',
-    image: null,
-    imageTone: 'cream',
-    status: 'available',
-    active: true,
-    featured: true,
-    displayOrder: 1,
-    formId: 'birthday-cake-form',
-    priceLabel: 'From $45',
-  },
-  {
-    id: 'bakery-cakes-celebration-cake',
-    collectionId: 'bakery-cakes',
-    category: 'cake',
-    businessArea: 'bakery',
-    slug: 'celebration-cake',
-    title: 'Celebration Cake',
-    subtitle: 'An elegant centerpiece for any gathering.',
-    shortDescription:
-      'Multi-tiered or custom finished cakes designed for anniversaries, showers, and milestones.',
-    description:
-      'A beautifully styled cake tailored to your gathering. Choose from our curated flavor pairings and decorative finishes.',
-    image: null,
-    imageTone: 'rose',
-    status: 'available',
-    active: true,
-    featured: false,
-    displayOrder: 2,
-    formId: 'celebration-cake-form',
-    priceLabel: 'From $65',
-  },
-  {
-    id: 'sewing-custom-sewing-adult-t-shirt',
-    collectionId: 'sewing-custom-sewing',
-    category: 'shirt',
-    businessArea: 'sewing',
-    slug: 'adult-t-shirt',
-    title: 'Adult T-Shirt',
-    subtitle: 'Tailored fit in premium soft fabric.',
-    shortDescription:
-      'Made-to-order t-shirt styled to your measurements and preferred fabric selection.',
-    description:
-      'A comfortable, durable everyday tee crafted from high-quality jersey knit. Customized for sleeve length, neck style, and fit.',
-    image: null,
-    imageTone: 'sage',
-    status: 'available',
-    active: true,
-    featured: true,
-    displayOrder: 1,
-    formId: 'adult-t-shirt-form',
-    priceLabel: 'From $38',
-  },
-  {
-    id: 'sewing-custom-sewing-custom-hoodie',
-    collectionId: 'sewing-custom-sewing',
-    category: 'shirt',
-    businessArea: 'sewing',
-    slug: 'custom-hoodie',
-    title: 'Custom Hoodie',
-    subtitle: 'Cozy, custom-fit fleece pullover.',
-    shortDescription:
-      'Handmade fleece hoodie built to fit your style with choice of pocket, hood style, and color.',
-    description:
-      'Warm, breathable fleece sewn to fit comfortably. Features customizable accents including drawstring colors and pocket options.',
-    image: null,
-    imageTone: 'cocoa',
-    status: 'available',
-    active: true,
-    featured: false,
-    displayOrder: 2,
-    formId: 'custom-hoodie-form',
-    priceLabel: 'From $75',
-  },
-];
+type ProductRecord = Omit<Product, 'collectionId' | 'status' | 'title'> & {
+  collection: string;
+  name: string;
+  title?: string;
+  status: Product['status'] | 'Active' | 'Seasonal' | 'Out of Stock' | 'Preorder';
+};
+
+const statusMap: Record<ProductRecord['status'], Product['status']> = {
+  Active: 'available',
+  Seasonal: 'seasonal',
+  'Out of Stock': 'out-of-stock',
+  Preorder: 'preorder',
+  available: 'available',
+  seasonal: 'seasonal',
+  'out-of-stock': 'out-of-stock',
+  preorder: 'preorder',
+};
+
+const toProduct = (record: ProductRecord): Product => ({
+  ...record,
+  collectionId: record.collection,
+  title: record.title || record.name,
+  status: statusMap[record.status],
+});
+
+/** Product data loaded from JSON to support future spreadsheet-backed imports. */
+export const products: readonly Product[] = (productRecords as ProductRecord[]).map(toProduct);
 
 const orderedActive = (items: readonly Product[]): Product[] =>
   items
@@ -104,4 +45,20 @@ export const getProductsByCollection = (
   orderedActive(
     products.filter((product) => product.collectionId === collectionId),
   );
+
+/** Returns active products belonging to a specific business area. */
+export const getProductsByBusinessArea = (
+  area: Product['businessArea'],
+): Product[] =>
+  orderedActive(
+    products.filter((product) => product.businessArea === area),
+  );
+
+/** Returns active featured products sorted by display order. */
+export const getFeaturedProducts = (): Product[] =>
+  orderedActive(products.filter((product) => product.featured));
+
+/** Returns a product by unique ID, including inactive records. */
+export const getProductById = (id: string): Product | undefined =>
+  products.find((product) => product.id === id);
 

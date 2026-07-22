@@ -1,9 +1,12 @@
 ---
 import type { Form } from '../../types/form';
 import FormField from './FormField.astro';
+import { getFormById } from '../../data/forms';
 
 interface Props {
-  form: Form;
+  form?: Form;
+  formId?: string;
+  fallbackTitle?: string;
   product: {
     collectionId: string;
     productId: string;
@@ -11,7 +14,13 @@ interface Props {
   };
 }
 
-const { form, product } = Astro.props;
+const { form: providedForm, formId, fallbackTitle, product } = Astro.props;
+const form = providedForm || (formId ? getFormById(formId) : undefined) || {
+  id: formId || `${product.productId}-cart-form`,
+  name: fallbackTitle || product.productTitle,
+  title: fallbackTitle || product.productTitle,
+  fields: [],
+};
 ---
 
 <form
