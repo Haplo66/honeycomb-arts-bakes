@@ -1,4 +1,4 @@
-You are working on the Honeycomb Arts & Bakes website.
+You are working on the RIPPLE Bakes & Makes website.
 
 Project:
 A small artisan business website combining:
@@ -75,7 +75,7 @@ Dusty rose:
 
 
 Logo concept:
-A honeycomb hexagon.
+A ripple-inspired symbol.
 Inside:
 - left: wheat/bakery
 - right: thread spool/needle

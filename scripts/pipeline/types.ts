@@ -17,7 +17,7 @@ export interface PipelineWarning {
 export interface PipelineMetadata {
   generated: true;
   generatedAt: string;
-  source: 'Honeycomb Data Pipeline';
+  source: 'RIPPLE Data Pipeline';
   version: 1;
 }
 

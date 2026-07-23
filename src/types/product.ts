@@ -1,7 +1,7 @@
 import type { CollectionCategory, CollectionImageTone } from './collection';
 import type { ProductCustomization } from './product-options';
 
-/** Specific product types offered by Honeycomb Arts & Bakes. */
+/** Specific product types offered by RIPPLE Bakes & Makes. */
 export type ProductCategory =
   | 'cake'
   | 'bread'

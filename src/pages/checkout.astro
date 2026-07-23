@@ -4,8 +4,8 @@ import { sitePath } from '../utils/paths';
 ---
 
 <MainLayout
-  title="Checkout | Honeycomb Arts & Bakes"
-  description="Share your pickup and contact details for your Honeycomb Arts & Bakes order."
+  title="Checkout | RIPPLE Bakes & Makes"
+  description="Share your pickup and contact details for your RIPPLE Bakes & Makes order."
 >
   <section class="page-hero">
     <div class="container">
@@ -247,7 +247,7 @@ import { sitePath } from '../utils/paths';
     }
   });
 
-  window.addEventListener('honeycomb-cart:updated', renderCheckout);
+  window.addEventListener('ripple-cart:updated', renderCheckout);
   window.addEventListener('storage', renderCheckout);
   renderCheckout();
 </script>

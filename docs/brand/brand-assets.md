@@ -5,10 +5,10 @@
 Status:
 Approved
 
-Files:
-
-- Transparent logo PNG
-- Original master logo PNG
+Files (place new assets here):
+- `public/ripple-logo.png` – Primary RIPPLE logo
+- `public/ripple-logo-transparent.png` – Transparent variant
+- `public/ripple-symbol.png` – Icon-only symbol
 
 Usage:
 
@@ -20,6 +20,8 @@ Do not modify:
 - Colors
 - Layout
 
+> **Migration note:** The old `public/favicon.ico` and `public/favicon.svg` (hexagon/bee) remain in place for now but should be replaced with RIPPLE-branded favicon assets.
+
 ---
 
 # Favicon
@@ -30,12 +32,12 @@ Complete
 Created using:
 Favicon.io
 
-Files:
-
-- favicon.ico
-- favicon-16x16.png
-- favicon-32x32.png
-- apple-touch-icon.png
+Files (place new assets here):
+- `public/favicon.ico` – Replace with RIPPLE favicon
+- `public/favicon.svg` – Replace with RIPPLE SVG favicon
+- `public/favicon-16x16.png`
+- `public/favicon-32x32.png`
+- `public/apple-touch-icon.png`
 - android icons
 
 Usage:

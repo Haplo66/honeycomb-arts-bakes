@@ -1,6 +1,6 @@
 import type { Cart, CartItem, CartItemInput } from '../types/cart';
 
-const CART_STORAGE_KEY = 'honeycomb-cart';
+const CART_STORAGE_KEY = 'ripple-cart';
 
 const createEmptyCart = (): Cart => ({
   items: [],
@@ -80,7 +80,7 @@ const dispatchCartUpdate = (cart: Cart): void => {
   }
 
   window.dispatchEvent(
-    new CustomEvent('honeycomb-cart:updated', {
+    new CustomEvent('ripple-cart:updated', {
       detail: cart,
     }),
   );

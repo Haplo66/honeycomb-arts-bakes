@@ -16,9 +16,9 @@
 
 ## Purpose
 
-Honeycomb Arts & Bakes is a static Astro website for a premium handmade bakery and sewing business. The architecture keeps business content in data files, renders collection and product pages from that data, and avoids any required backend so the site remains compatible with GitHub Pages.
+RIPPLE Bakes & Makes is a static Astro website for a premium handmade bakery and sewing business. The architecture keeps business content in data files, renders collection and product pages from that data, and avoids any required backend so the site remains compatible with GitHub Pages.
 
-The current source of truth is a manually exported Google Sheet. The website does not read Google Sheets directly. CSV exports are processed by the Honeycomb Data Pipeline into JSON files under `src/data/`.
+The current source of truth is a manually exported Google Sheet. The website does not read Google Sheets directly. CSV exports are processed by the RIPPLE Data Pipeline into JSON files under `src/data/`.
 
 ## System Overview
 
@@ -27,7 +27,7 @@ flowchart TD
   owner["Business owner"] --> sheet["Google Sheet"]
   sheet --> csv["Manual CSV export"]
   csv --> import["data/import/*.csv"]
-  import --> pipeline["Honeycomb Data Pipeline"]
+  import --> pipeline["RIPPLE Data Pipeline"]
   pipeline --> json["src/data/*.json"]
   json --> loaders["src/data/*.ts loaders"]
   loaders --> pages["Astro pages"]

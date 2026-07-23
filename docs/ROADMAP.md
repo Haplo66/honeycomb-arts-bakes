@@ -1,4 +1,4 @@
-# Honeycomb Arts & Bakes
+# RIPPLE Bakes & Makes
 
 # Project Roadmap v2
 
@@ -505,7 +505,7 @@ Every task that changes architecture, workflows, or data structures should updat
 # Long-Term Architecture
 
 ```
-                    Honeycomb Build System
+                    RIPPLE Build System
 
                Google Sheets / CSV
                       │

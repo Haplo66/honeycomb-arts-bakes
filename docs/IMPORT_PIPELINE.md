@@ -1,6 +1,6 @@
-# Honeycomb Data Pipeline
+# RIPPLE Data Pipeline
 
-The Honeycomb Data Pipeline turns manually exported Google Sheets CSV files into the JSON files consumed by the Astro website.
+The RIPPLE Data Pipeline turns manually exported Google Sheets CSV files into the JSON files consumed by the Astro website.
 
 The website continues to read:
 
@@ -115,7 +115,7 @@ Each generated JSON file uses this wrapper:
   "_metadata": {
     "generated": true,
     "generatedAt": "ISO_TIMESTAMP",
-    "source": "Honeycomb Data Pipeline",
+    "source": "RIPPLE Data Pipeline",
     "version": 1
   },
   "data": []

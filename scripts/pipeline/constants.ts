@@ -1,6 +1,6 @@
 import path from 'node:path';
 
-export const PIPELINE_NAME = 'Honeycomb Data Pipeline';
+export const PIPELINE_NAME = 'RIPPLE Data Pipeline';
 export const PIPELINE_VERSION = 1;
 
 export const PROJECT_ROOT = process.cwd();

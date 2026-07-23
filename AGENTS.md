@@ -1,4 +1,4 @@
-# Honeycomb Arts & Bakes Development Guidelines
+# RIPPLE Bakes & Makes Development Guidelines
 
 ## Project Philosophy
 This is a premium artisan small business website.

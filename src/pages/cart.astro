@@ -6,8 +6,8 @@ import { sitePath } from '../utils/paths';
 ---
 
 <MainLayout
-  title="Cart | Honeycomb Arts & Bakes"
-  description="Review your Honeycomb Arts & Bakes cart."
+  title="Cart | RIPPLE Bakes & Makes"
+  description="Review your RIPPLE Bakes & Makes cart."
 >
   <section class="page-hero">
     <div class="container">
@@ -126,7 +126,7 @@ import { sitePath } from '../utils/paths';
     renderCart();
   });
 
-  window.addEventListener('honeycomb-cart:updated', renderCart);
+  window.addEventListener('ripple-cart:updated', renderCart);
   window.addEventListener('storage', renderCart);
   renderCart();
 </script>

@@ -23,7 +23,7 @@ Generated JSON files use a shared wrapper:
   "_metadata": {
     "generated": true,
     "generatedAt": "2026-07-22T18:59:25.378Z",
-    "source": "Honeycomb Data Pipeline",
+    "source": "RIPPLE Data Pipeline",
     "version": 1
   },
   "data": []
