@@ -16,6 +16,14 @@ const parseNullableString = (value: string): string | null =>
 const parsePipeField = (value: string): string[] =>
   value.trim() ? value.split('|').map((part) => part.trim()).filter(Boolean) : [];
 
+const slugify = (value: string): string =>
+  value
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '')
+    .replace(/-+/g, '-');
+
 const parseJsonField = <T>(
   value: string,
   fallback: T,
@@ -49,7 +57,7 @@ export const normalizeCollections = (
   records.map(({ rowNumber, values }) => ({
     id: values.id,
     businessArea: values.businessArea.toLowerCase(),
-    slug: values.slug,
+    slug: values.slug || slugify(values.name),
     name: values.name,
     subtitle: values.subtitle,
     shortDescription: values.shortDescription,
@@ -80,9 +88,9 @@ export const normalizeProducts = (records: CsvRecord[]) =>
   records.map(({ values }) => ({
     id: values.id,
     businessArea: values.businessArea.toLowerCase(),
-    collection: values.collection,
+    collection: slugify(values.collection),
     category: values.category,
-    slug: values.slug,
+    slug: values.slug || slugify(values.name),
     name: values.name,
     subtitle: values.subtitle,
     shortDescription: values.shortDescription,

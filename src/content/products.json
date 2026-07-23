@@ -1,7 +1,7 @@
 {
   "_metadata": {
     "generated": true,
-    "generatedAt": "2026-07-23T14:26:18.382Z",
+    "generatedAt": "2026-07-23T14:45:20.737Z",
     "source": "Honeycomb Data Pipeline",
     "version": 1
   },
@@ -9,7 +9,8 @@
     {
       "id": "BB-001",
       "businessArea": "sewing",
-      "collection": "Baby Blankets",
+      "collection": "baby-blankets",
+      "slug": "personalized-baby-blanket",
       "name": "Personalized Baby Blanket",
       "shortDescription": "Handmade baby blanket",
       "status": "Active",
@@ -25,7 +26,8 @@
     {
       "id": "BE-001",
       "businessArea": "sewing",
-      "collection": "Beanie Hats",
+      "collection": "beanie-hats",
+      "slug": "custom-beanie-hat",
       "name": "Custom Beanie Hat",
       "shortDescription": "Handmade winter beanie",
       "status": "Active",
@@ -41,7 +43,8 @@
     {
       "id": "BH-001",
       "businessArea": "sewing",
-      "collection": "Bucket Hats",
+      "collection": "bucket-hats",
+      "slug": "custom-bucket-hat",
       "name": "Custom Bucket Hat",
       "shortDescription": "Handmade bucket hat",
       "status": "Active",
@@ -57,7 +60,8 @@
     {
       "id": "BH-002",
       "businessArea": "sewing",
-      "collection": "Bucket Hats",
+      "collection": "bucket-hats",
+      "slug": "kids-bucket-hat",
       "name": "Kids Bucket Hat",
       "shortDescription": "Handmade children's bucket hat",
       "status": "Active",
@@ -73,7 +77,8 @@
     {
       "id": "CS-001",
       "businessArea": "sewing",
-      "collection": "Custom Shirts",
+      "collection": "custom-shirts",
+      "slug": "custom-design-shirt",
       "name": "Custom Design Shirt",
       "shortDescription": "Personalized handmade shirt",
       "status": "Active",
@@ -89,7 +94,8 @@
     {
       "id": "CS-002",
       "businessArea": "sewing",
-      "collection": "Custom Shirts",
+      "collection": "custom-shirts",
+      "slug": "family-event-shirt",
       "name": "Family Event Shirt",
       "shortDescription": "Matching custom shirts",
       "status": "Active",
@@ -105,7 +111,8 @@
     {
       "id": "FB-001",
       "businessArea": "bakery",
-      "collection": "Flat Bread",
+      "collection": "flat-bread",
+      "slug": "traditional-flat-bread",
       "name": "Traditional Flat Bread",
       "shortDescription": "Fresh handmade flat bread",
       "status": "Active",
@@ -121,7 +128,8 @@
     {
       "id": "FB-002",
       "businessArea": "bakery",
-      "collection": "Flat Bread",
+      "collection": "flat-bread",
+      "slug": "herb-flat-bread",
       "name": "Herb Flat Bread",
       "shortDescription": "Flat bread with herbs and flavors",
       "status": "Active",
@@ -137,7 +145,8 @@
     {
       "id": "FP-001",
       "businessArea": "bakery",
-      "collection": "Filled Pockets",
+      "collection": "filled-pockets",
+      "slug": "classic-filled-pocket",
       "name": "Classic Filled Pocket",
       "shortDescription": "Handmade pastry pocket with filling",
       "status": "Active",
@@ -153,7 +162,8 @@
     {
       "id": "FP-002",
       "businessArea": "bakery",
-      "collection": "Filled Pockets",
+      "collection": "filled-pockets",
+      "slug": "chocolate-filled-pocket",
       "name": "Chocolate Filled Pocket",
       "shortDescription": "Sweet chocolate filled pastry",
       "status": "Active",
@@ -169,7 +179,8 @@
     {
       "id": "RP-001",
       "businessArea": "sewing",
-      "collection": "Rice Packs",
+      "collection": "rice-packs",
+      "slug": "reusable-rice-heat-pack",
       "name": "Reusable Rice Heat Pack",
       "shortDescription": "Handmade heating/cooling pack",
       "status": "Active",
@@ -185,7 +196,8 @@
     {
       "id": "SB-001",
       "businessArea": "bakery",
-      "collection": "Sourdough Bread",
+      "collection": "sourdough-bread",
+      "slug": "classic-sourdough-loaf",
       "name": "Classic Sourdough Loaf",
       "shortDescription": "Artisan sourdough bread",
       "status": "Active",
@@ -201,7 +213,8 @@
     {
       "id": "SB-002",
       "businessArea": "bakery",
-      "collection": "Sourdough Bread",
+      "collection": "sourdough-bread",
+      "slug": "seeded-sourdough-loaf",
       "name": "Seeded Sourdough Loaf",
       "shortDescription": "Sourdough with seeds",
       "status": "Active",

@@ -1,7 +1,7 @@
 {
   "_metadata": {
     "generated": true,
-    "generatedAt": "2026-07-23T14:26:18.379Z",
+    "generatedAt": "2026-07-23T14:45:20.734Z",
     "source": "Honeycomb Data Pipeline",
     "version": 1
   },
@@ -9,6 +9,7 @@
     {
       "id": "baby-blankets",
       "businessArea": "sewing",
+      "slug": "baby-blankets",
       "name": "Baby Blankets",
       "heroImage": null,
       "images": [],
@@ -23,6 +24,7 @@
     {
       "id": "beanie-hats",
       "businessArea": "sewing",
+      "slug": "beanie-hats",
       "name": "Beanie Hats",
       "heroImage": null,
       "images": [],
@@ -37,6 +39,7 @@
     {
       "id": "bucket-hats",
       "businessArea": "sewing",
+      "slug": "bucket-hats",
       "name": "Bucket Hats",
       "heroImage": null,
       "images": [],
@@ -51,6 +54,7 @@
     {
       "id": "custom-shirts",
       "businessArea": "sewing",
+      "slug": "custom-shirts",
       "name": "Custom Shirts",
       "heroImage": null,
       "images": [],
@@ -65,6 +69,7 @@
     {
       "id": "filled-pockets",
       "businessArea": "bakery",
+      "slug": "filled-pockets",
       "name": "Filled Pockets",
       "heroImage": null,
       "images": [],
@@ -79,6 +84,7 @@
     {
       "id": "flat-bread",
       "businessArea": "bakery",
+      "slug": "flat-bread",
       "name": "Flat Bread",
       "heroImage": null,
       "images": [],
@@ -93,6 +99,7 @@
     {
       "id": "other",
       "businessArea": "bakery",
+      "slug": "other-bakery",
       "name": "Other Bakery",
       "heroImage": null,
       "images": [],
@@ -107,6 +114,7 @@
     {
       "id": "other",
       "businessArea": "sewing",
+      "slug": "other-sewing",
       "name": "Other Sewing",
       "heroImage": null,
       "images": [],
@@ -121,6 +129,7 @@
     {
       "id": "rice-packs",
       "businessArea": "sewing",
+      "slug": "rice-packs",
       "name": "Rice Packs",
       "heroImage": null,
       "images": [],
@@ -135,6 +144,7 @@
     {
       "id": "sourdough-bread",
       "businessArea": "bakery",
+      "slug": "sourdough-bread",
       "name": "Sourdough Bread",
       "heroImage": null,
       "images": [],
