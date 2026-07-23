@@ -11,16 +11,19 @@ export const IMPORT_FILES = {
   collections: 'collections.csv',
   products: 'products.csv',
   forms: 'forms.csv',
+  productOptions: 'product-options.csv',
 } as const;
 
 export const OUTPUT_FILES = {
   collections: 'collections.json',
   products: 'products.json',
   forms: 'forms.json',
+  productOptions: 'product-options.json',
 } as const;
 
 export const SHEET_TABS = {
   collections: 'Collections',
   products: 'Products',
   forms: 'Forms',
+  productOptions: 'Product Options',
 } as const;

@@ -3,6 +3,7 @@ import MainLayout from '../../../layouts/MainLayout.astro';
 import FormRenderer from '../../../components/forms/FormRenderer.astro';
 import { getAllProducts } from '../../../data/products';
 import { collections } from '../../../data/collections';
+import { getProductOptions } from '../../../data/product-options';
 import { sitePath } from '../../../utils/paths';
 import { getProductPrimaryImage, getProductImages } from '../../../utils/images';
 import type { Product } from '../../../types/product';
@@ -65,6 +66,8 @@ const businessAreaTitle =
   product.businessArea === 'bakery'
     ? 'Bakery'
     : 'Sewing Studio';
+
+const options = getProductOptions(product.id);
 
 ---
 
@@ -168,6 +171,26 @@ const businessAreaTitle =
             </div>
           </div>
 
+          {options.length > 0 && (
+            <div class="product-detail__options">
+              <h2 class="options-heading">Available Options</h2>
+              {options.map((option) => (
+                <div class="option-group">
+                  <h3 class="option-name">{option.label}</h3>
+                  {option.values && option.values.length > 0 ? (
+                    <ul class="option-values">
+                      {option.values.map((value) => (
+                        <li class="option-value">{value}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p class="option-hint">Free text entry</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
           <FormRenderer
             formId={product.formId}
             fallbackTitle={product.title}
@@ -195,5 +218,45 @@ const businessAreaTitle =
     border-radius: 0.6rem;
     height: 80px;
     width: 80px;
+  }
+  .product-detail__options {
+    margin-top: 2rem;
+  }
+  .options-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: -.035em;
+    margin: 0 0 1rem;
+  }
+  .option-group {
+    margin-bottom: 1rem;
+  }
+  .option-name {
+    font-size: .85rem;
+    font-weight: 600;
+    margin: 0 0 .35rem;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+  }
+  .option-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .option-value {
+    background: #f6eddf;
+    border-radius: 2rem;
+    font-size: .82rem;
+    padding: .3rem .85rem;
+  }
+  .option-hint {
+    color: var(--muted);
+    font-size: .82rem;
+    font-style: italic;
+    margin: 0;
   }
 </style>

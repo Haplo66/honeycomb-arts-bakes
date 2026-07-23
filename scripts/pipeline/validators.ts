@@ -4,6 +4,7 @@ const requiredFields: Record<DatasetName, string[]> = {
   collections: ['id', 'businessArea', 'name'],
   products: ['id', 'businessArea', 'collection', 'name', 'formId'],
   forms: ['id', 'name'],
+  productOptions: ['productId', 'optionName', 'optionType'],
 };
 
 export const validateRecords = (

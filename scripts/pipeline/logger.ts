@@ -4,6 +4,7 @@ const labels: Record<DatasetName, string> = {
   collections: 'collections',
   products: 'products',
   forms: 'forms',
+  productOptions: 'product options',
 };
 
 export const logHeader = (name: string, version: number): void => {

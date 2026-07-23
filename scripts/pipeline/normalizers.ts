@@ -107,6 +107,15 @@ export const normalizeProducts = (records: CsvRecord[]) =>
     priceLabel: values.priceLabel,
   }));
 
+export const normalizeProductOptions = (records: CsvRecord[]) =>
+  records.map(({ values }) => ({
+    id: `${values.productId}--${slugify(values.optionName)}`,
+    productId: values.productId,
+    optionName: values.optionName,
+    optionType: values.optionType,
+    values: values.values ? values.values.split('|').map((v) => v.trim()).filter(Boolean) : [],
+  }));
+
 export const normalizeForms = (
   records: CsvRecord[],
   file: string,

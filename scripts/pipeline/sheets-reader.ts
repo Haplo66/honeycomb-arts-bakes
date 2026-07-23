@@ -26,6 +26,11 @@ const HEADER_MAP: Record<DatasetName, Record<string, string>> = {
     'Form ID': 'id',
     'Form Name': 'name',
   },
+  productOptions: {
+    'Product ID': 'productId',
+    'Option Name': 'optionName',
+    'Option Type': 'optionType',
+  },
 };
 
 const normalizeHeader = (header: string, dataset: DatasetName): string =>
