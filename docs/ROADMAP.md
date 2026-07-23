@@ -1,555 +1,566 @@
-# RIPPLE Bakes & Makes
+# RIPPLE Bakes & Makes — Project Continuation Notes (Updated)
 
-# Project Roadmap v2
+## Project Status
 
-## Status: Post Data Pipeline Architecture
+We are building **RIPPLE Bakes & Makes**, an Astro static website deployed on GitHub Pages.
 
----
+Current stack:
 
-# Vision
+* Astro `6.4.8`
+* TypeScript
+* GitHub Pages deployment
+* Google Sheets as the content source
+* Static site generation
 
-Create a fully data-driven, maintainable e-commerce website where the business owner manages products, collections, forms, images, and business information without editing source code.
+Repository:
 
-Long-term workflow:
-
-```
-Google Sheet
-      │
-      ▼
-Data Pipeline
-      │
-      ▼
-Generated Content
-      │
-      ▼
-Asset Pipeline
-      │
-      ▼
-Astro Website
-      │
-      ▼
-GitHub Pages
-```
+* Branch: `master`
+* Base path: `/ripple-bakes-makes`
 
 ---
 
-# Current Status (Completed)
+# AI Workflow Preference
 
-## Website Foundation
+* Use ChatGPT for:
 
-* ✅ Astro website
-* ✅ Dynamic routing
-* ✅ Collection architecture
-* ✅ Product architecture
-* ✅ Dynamic product pages
-* ✅ Dynamic order forms
+  * architecture
+  * planning
+  * reviews
+  * implementation prompts
 
-## Data Architecture
+* Use DeepSeek/Codex-style tools for implementation.
 
-* ✅ products.json
-* ✅ collections.json
-* ✅ forms.json
+When providing implementation prompts:
 
-## Data Loaders
-
-* ✅ Product loader
-* ✅ Collection loader
-* ✅ Form loader
-
-## Data Pipeline
-
-* ✅ CSV import pipeline
-* ✅ Validation
-* ✅ Metadata generation
-* ✅ Sample CSV files
-* ✅ Import logging
-* ✅ Documentation
+* Provide one single copy-paste markdown block.
+* Keep prompts concise because local models have limited tokens.
+* Recommend the appropriate model/effort when relevant.
 
 ---
 
-# Phase 1 — Repository Organization
+# Current Architecture
 
-## Goal
-
-Separate generated content from application logic.
-
-### Target Structure
+## Data Flow
 
 ```
-src/
-│
-├── components/
-├── content/
-│   ├── products.json
-│   ├── collections.json
-│   ├── forms.json
-│   ├── settings.json
-│   ├── images.json
-│   └── metadata/
-│
-├── data/
-│   ├── products.ts
-│   ├── collections.ts
-│   ├── forms.ts
-│   ├── settings.ts
-│   └── images.ts
-│
-├── layouts/
-├── pages/
-└── types/
+Google Sheets
+      |
+      v
+scripts/pipeline/
+      |
+      ├── reader.ts
+      ├── sheets-reader.ts
+      ├── csv-reader.ts
+      ├── validators.ts
+      ├── normalizers.ts
+      ├── generators.ts
+      |
+      v
+src/content/
+      |
+      ├── products.json
+      ├── collections.json
+      └── forms.json
+      |
+      v
+src/data/
+      |
+      ├── products.ts
+      ├── collections.ts
+      ├── forms.ts
+      └── static/
+          ├── gallery.ts
+          └── testimonials.ts
+      |
+      v
+Astro pages/components
 ```
-
-Also create:
-
-```
-reports/
-```
-
-Examples:
-
-* import-report.json
-* image-report.json
 
 ---
 
-# Phase 2 — Asset Pipeline
+# Completed Milestones
 
-## Goal
+## v1.5 — Google Sheets Pipeline
 
-Treat images as managed assets instead of static files.
+Completed and tagged.
 
-Images should never be referenced manually inside products.
+Implemented:
 
-## Source Asset Structure
+* Google Sheets API integration
+* Service account authentication
+* Sheet reader abstraction
+* CSV fallback support
+
+Pipeline:
 
 ```
-assets/
+scripts/pipeline/
+
+├── constants.ts
+├── csv-reader.ts
+├── generators.ts
+├── import-data.ts
+├── logger.ts
+├── normalizers.ts
+├── reader.ts
+├── sheets-auth.ts
+├── sheets-reader.ts
+├── types.ts
+└── validators.ts
+```
+
+Environment variables:
+
+```
+GOOGLE_SHEETS_CLIENT_EMAIL
+GOOGLE_SHEETS_PRIVATE_KEY
+GOOGLE_SHEETS_ID
+SHEETS_ENABLED=true
+```
+
+Service account:
+
+```
+ripple-reader
+```
+
+---
+
+## v1.5.1 — Product Slug Generation
+
+Completed and tagged.
+
+Problem:
+
+Astro dynamic route required:
+
+```
+product.slug
+```
+
+Google Sheets intentionally does not contain slug data.
+
+Solution:
+
+* Pipeline generates slugs automatically.
+* Business users keep a simple spreadsheet.
+* Technical fields remain inside the pipeline.
+
+Example:
+
+```
+Personalized Baby Blanket
+```
+
+becomes:
+
+```
+personalized-baby-blanket
+```
+
+Verification:
+
+* `npm run import:data` ✅
+* `npm run build` ✅
+* zero warnings
+
+---
+
+# Data Status
+
+Current generated data:
+
+Collections:
+
+```
+10 collections
+```
+
+Products:
+
+```
+13 products
+```
+
+Forms:
+
+```
+6 forms
+```
+
+Build status:
+
+```
+Successful
+0 errors
+```
+
+---
+
+# Product Image Architecture
+
+Implemented:
+
+* Product images array support
+* Collection images support
+* Image helper utilities
+
+File:
+
+```
+src/utils/images.ts
+```
+
+Helpers:
+
+```
+getProductImages()
+getProductPrimaryImage()
+getCollectionImages()
+getCollectionPrimaryImage()
+```
+
+Images:
+
+```
+public/images/
 
 ├── bakery/
-│   ├── filled-pockets/
-│   │   ├── FP-001/
-│   │   │   ├── cover.jpg
-│   │   │   ├── 01.jpg
-│   │   │   ├── 02.jpg
-│   │   │   └── 03.jpg
-│   │   └── FP-002/
-│   │
-│   ├── flat-bread/
-│   └── sourdough/
-│
 └── sewing/
-    ├── custom-shirts/
-    ├── bucket-hats/
-    ├── beanie-hats/
-    ├── baby-blankets/
-    └── rice-packs/
 ```
 
-Each product owns its own folder.
+Current behavior:
 
-### Naming Convention
-
-Required:
-
-```
-cover.jpg
-```
-
-Gallery:
-
-```
-01.jpg
-02.jpg
-03.jpg
-...
-```
-
-Future support:
-
-* WebP
-* PNG
-* MP4
-* PDF
-
-## Asset Pipeline
-
-Create:
-
-```
-scripts/assets/
-```
-
-Modules:
-
-* scan-assets.ts
-* validate-assets.ts
-* generate-images.ts
-* generate-thumbnails.ts
-* logger.ts
-
-## Responsibilities
-
-* Scan product folders
-* Validate naming
-* Validate required cover image
-* Detect duplicate images
-* Detect orphan folders
-* Detect products without images
-* Detect images without products
-* Generate image metadata
-* Generate reports
-
-## Generated Files
-
-```
-src/content/images.json
-```
-
-```
-reports/image-report.json
-```
-
-## Future Features
-
-* Image optimization
-* Responsive images
-* WebP conversion
-* Thumbnail generation
-* Blur placeholders
-* Dominant color extraction
-* Broken image detection
-* Unused image detection
-* Automatic ALT text support
+* Real images supported.
+* Missing images fall back to placeholders.
 
 ---
 
-# Phase 3 — Google Sheets Integration
+# v1.6-rebranding — RIPPLE Brand Migration
 
-Replace manual CSV exports with direct Google Sheets API access.
+Completed and tagged.
+
+Tag:
+
+```
+v1.6-rebranding
+```
+
+Implemented:
+
+## Repository
+
+* GitHub repository renamed:
+
+  * from Honeycomb Arts & Bakes
+  * to RIPPLE Bakes & Makes
+
+* Local project folder renamed.
+
+## Branding
+
+Completed:
+
+* RIPPLE logo assets integrated.
+* Old Honeycomb references cleaned.
+* Branding updated across the project.
+
+## Logo handling
+
+Implemented:
+
+Header:
+
+```
+ripple-logo-transparent.png
+```
+
+Footer:
+
+```
+ripple-logo.png
+```
+
+`Logo.astro` now supports selecting the correct logo variant.
+
+## Favicon
+
+Implemented:
+
+```
+public/ripple-symbol.png
+```
+
+Updated:
+
+```
+src/layouts/MainLayout.astro
+```
+
+Verified:
+
+```
+/ripple-bakes-makes/ripple-symbol.png
+```
+
+## Verification
+
+Build:
+
+```
+31 pages
+0 errors
+```
+
+---
+
+# Current State
+
+The project is stable after rebranding.
+
+Latest milestone:
+
+```
+v1.6-rebranding
+```
+
+Next milestone:
+
+```
+v1.7 — Product Options Integration
+```
+
+---
+
+# v1.7 Planned Work — Product Options Integration
+
+Goal:
+
+Connect the existing Google Sheets Product Options system into the product architecture.
 
 Current:
 
 ```
-Google Sheet
-      │
-CSV Export
-      │
-Data Pipeline
+Google Sheets
+
+Products
+Collections
+Forms
 ```
 
-Future:
+Need to add:
 
 ```
-Google Sheets API
-      │
-Data Pipeline
+Product Options
 ```
 
-Requirements:
-
-* Google Service Account
-* Read-only access
-* Environment variables
-* Local development
-* GitHub Actions compatibility
-
-The pipeline must support multiple input adapters:
-
-* CSV
-* Google Sheets API
-
-The remainder of the pipeline should remain unchanged.
-
----
-
-# Phase 4 — Settings Architecture
-
-Move all business configuration into data.
-
-Create:
+Flow:
 
 ```
-settings.json
-```
+Google Sheets
+(Product Options tab)
 
-Examples:
+        |
+        v
 
-* Business name
-* Contact information
-* Address
-* Social media
-* Business hours
-* Footer
-* Announcement banner
-* Theme configuration
+Pipeline
 
-No business information should be hardcoded.
+        |
+        v
 
----
+Generated content
 
-# Phase 5 — Customer Ordering Experience
+        |
+        v
 
-## Customer Journey
+Product model
 
-```
-Home
+        |
+        v
 
-↓
+Product detail page
 
-Business Area
+        |
+        v
 
-↓
-
-Collection
-
-↓
-
-Product
-
-↓
-
-Configure Product
-
-↓
-
-Add To Cart
-
-↓
-
-Review Cart
-
-↓
-
-Checkout
-
-↓
-
-Confirmation
-```
-
-## Shopping Cart
-
-Each cart item stores:
-
-* Product
-* Selected options
-* Quantity
-* Customer notes
-
-## Checkout
-
-Customer Information:
-
-* Name
-* Email
-* Phone
-
-Optional:
-
-* Pickup / Delivery
-* Preferred date
-* Preferred time
-* Additional comments
-
-Future:
-
-* Order confirmation emails
-* Customer order history
-
----
-
-# Phase 6 — Order Management
-
-## Initial Version
-
-Generate structured order data.
-
-Potential destinations:
-
-* Email
-* Google Sheets
-* JSON archive
-
-Future integrations:
-
-* Airtable
-* Supabase
-
-## Order Lifecycle
-
-```
-New
-
-↓
-
-Confirmed
-
-↓
-
-In Progress
-
-↓
-
-Ready
-
-↓
-
-Completed
-
-↓
-
-Archived
-```
-
-Future:
-
-* Customer notifications
-* Status tracking
-* Internal notes
-* Production schedule
-
----
-
-# Phase 7 — Inventory & Availability
-
-This project is primarily made-to-order.
-
-Focus on availability rather than stock counts.
-
-Supported states:
-
-* Active
-* Hidden
-* Seasonal
-* Sold Out
-* Coming Soon
-
-Future:
-
-* Limited availability
-* Holiday products
-* Automatic scheduling
-
----
-
-# Phase 8 — Search & Discovery
-
-Features:
-
-* Search
-* Tags
-* Featured products
-* Related products
-* Seasonal collections
-* Popular items
-
----
-
-# Phase 9 — Performance
-
-Pipeline-generated assets:
-
-* Search index
-* Sitemap
-* Image metadata
-* Collection metadata
-* Static optimization
-
-Future:
-
-* RSS feeds
-* Structured data
-* SEO enhancements
-
----
-
-# Phase 10 — Pipeline Improvements
-
-Enhance the Data Pipeline with:
-
-* Schema validation
-* Duplicate ID detection
-* Broken reference detection
-* Import reports
-* Pipeline timing
-* Verbose mode
-* Dry-run mode
-
-Enhance the Asset Pipeline with:
-
-* Missing image detection
-* Broken image detection
-* Duplicate image detection
-* Responsive image generation
-* Compression
-* Optimization
-
----
-
-# Phase 11 — Documentation
-
-Maintain:
-
-* ARCHITECTURE.md
-* DATA_MODEL.md
-* GOOGLE_SHEET_SCHEMA.md
-* IMPORT_PIPELINE.md
-* DEVELOPER_GUIDE.md
-
-Documentation is considered part of the codebase.
-
-Every task that changes architecture, workflows, or data structures should update the relevant documentation before completion.
-
----
-
-# Long-Term Architecture
-
-```
-                    RIPPLE Build System
-
-               Google Sheets / CSV
-                      │
-               Data Pipeline
-                      │
-          ┌───────────┴───────────┐
-          │                       │
-   Generated Content        Import Reports
-          │
-          ▼
-
-        Astro Data Loaders
-
-          ▲
-          │
-
-      Asset Pipeline
-          ▲
-          │
-
-      Source Assets
-
-          ▼
-
-Optimized Website Assets
-
-          ▼
-
-      Astro Build
-
-          ▼
-
-   GitHub Pages Website
+Customization/order flow
 ```
 
 ---
 
-# Long-Term Goal
+## Existing Product Options Setup
 
-A new product should require only four steps:
+Already exists:
 
-1. Add the product to the Google Sheet.
-2. Copy the product images into the appropriate asset folder.
-3. Run the Data Pipeline.
-4. Deploy the website.
+Google Sheet:
 
-No source code changes should be required for normal business operations.
+```
+Product Options
+```
+
+Columns:
+
+```
+Product ID
+Option Name
+Option Type
+Values
+```
+
+Type file:
+
+```
+src/types/product-options.ts
+```
+
+Not yet integrated.
+
+---
+
+# v1.7 Initial Tasks
+
+Before coding:
+
+1. Audit current Product Options readiness.
+
+Inspect:
+
+```
+src/types/product-options.ts
+
+scripts/pipeline/
+
+src/data/
+
+src/components/forms/
+
+src/pages/[businessArea]/[collection]/[slug].astro
+```
+
+Determine:
+
+* where options enter the pipeline
+* how options attach to products
+* how forms consume options
+* how customization UI should be generated
+
+---
+
+## v1.8 — Dynamic Customization & Forms Enhancement
+
+Goal:
+
+Improve the product customization experience.
+
+Current:
+
+- Dynamic FormRenderer exists.
+- Forms are Google Sheets driven.
+
+Enhance:
+
+- Product-specific forms.
+- Product options connected to form fields.
+- Conditional fields.
+- Better field validation.
+- Improved customer input flow.
+
+Example:
+
+
+---
+
+## v1.9 — Product Gallery & Content Improvements
+
+Goal:
+
+Improve product presentation.
+
+Planned:
+
+- Better image galleries.
+- Multiple product images.
+- Image ordering.
+- Gallery interactions.
+- Improved collection pages.
+- More polished product cards.
+
+---
+
+## v2.0 — Ordering Workflow
+
+Goal:
+
+Create a complete customer order experience.
+
+Potential features:
+
+- Cart/order collection.
+- Customer details.
+- Product customization summary.
+- Order submission.
+- Email notification workflow.
+- Order management process.
+
+Constraints:
+
+- Keep architecture compatible with static Astro.
+- Avoid unnecessary backend complexity.
+- Prefer free solutions.
+
+---
+
+## v2.x — Business Management Improvements
+
+Future possibilities:
+
+- Better inventory management.
+- Availability tracking.
+- More advanced Google Sheets workflows.
+- Order history.
+- Customer communication tools.
+- Analytics.
+
+Only implement when needed.
+
+
+# Important Constraints
+
+Do not:
+
+* Move away from Astro static generation.
+* Remove Google Sheets pipeline.
+* Add paid services.
+* Put unnecessary technical fields into Google Sheets.
+* Overcomplicate the order system.
+
+Keep:
+
+* Google Sheets business-friendly.
+* Transformations inside TypeScript pipeline.
+* Static site architecture.
+
+---
+
+# Current Starting Point
+
+Continue from:
+
+**v1.6-rebranding complete**
+
+Next objective:
+
+**v1.7 — Product Options Integration**
+Goal:
+
+Connect Product Options from Google Sheets into the product data architecture.
+
+Planned:
+
+- Import Product Options through pipeline.
+- Validate and normalize option data.
+- Attach options to products.
+- Expose options on product detail pages.
+- Prepare customization flow.
+
+Expected output:
