@@ -21,6 +21,8 @@ export const OUTPUT_FILES = {
   productOptions: 'product-options.json',
 } as const;
 
+export const IMAGE_DIR = path.join(PROJECT_ROOT, 'public', 'images');
+
 export const SHEET_TABS = {
   collections: 'Collections',
   products: 'Products',

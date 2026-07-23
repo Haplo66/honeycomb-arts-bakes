@@ -17,6 +17,7 @@ interface ProductRecord {
   imageFolder: string;
   formId: string;
   image: string | null;
+  primaryImage: string;
   images: string[];
   imageTone?: string;
   active: boolean;
@@ -58,6 +59,7 @@ const toProduct = (record: ProductRecord): Product => {
     shortDescription: record.shortDescription,
     description: record.description || record.shortDescription,
     image: record.image || images[0] || null,
+    primaryImage: record.primaryImage || '',
     images,
     imageFolder: record.imageFolder,
     imageTone: (record.imageTone || 'cream') as CollectionImageTone,

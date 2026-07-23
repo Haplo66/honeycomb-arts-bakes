@@ -1,14 +1,14 @@
 {
   "_metadata": {
     "generated": true,
-    "generatedAt": "2026-07-23T22:17:55.567Z",
+    "generatedAt": "2026-07-23T23:54:23.825Z",
     "source": "RIPPLE Data Pipeline",
     "version": 1
   },
   "data": [
     {
-      "id": "BB-001--size",
-      "productId": "BB-001",
+      "id": "BK-FB-001--size",
+      "productId": "BK-FB-001",
       "optionName": "Size",
       "optionType": "Dropdown",
       "values": [],
@@ -18,96 +18,8 @@
       "helpText": null
     },
     {
-      "id": "BB-001--theme",
-      "productId": "BB-001",
-      "optionName": "Theme",
-      "optionType": "Dropdown",
-      "values": [],
-      "required": false,
-      "displayOrder": 0,
-      "placeholder": null,
-      "helpText": null
-    },
-    {
-      "id": "BE-001--size",
-      "productId": "BE-001",
-      "optionName": "Size",
-      "optionType": "Dropdown",
-      "values": [],
-      "required": false,
-      "displayOrder": 0,
-      "placeholder": null,
-      "helpText": null
-    },
-    {
-      "id": "BH-001--size",
-      "productId": "BH-001",
-      "optionName": "Size",
-      "optionType": "Dropdown",
-      "values": [],
-      "required": false,
-      "displayOrder": 0,
-      "placeholder": null,
-      "helpText": null
-    },
-    {
-      "id": "BH-002--fabric",
-      "productId": "BH-002",
-      "optionName": "Fabric",
-      "optionType": "Dropdown",
-      "values": [],
-      "required": false,
-      "displayOrder": 0,
-      "placeholder": null,
-      "helpText": null
-    },
-    {
-      "id": "CS-001--color",
-      "productId": "CS-001",
-      "optionName": "Color",
-      "optionType": "Dropdown",
-      "values": [],
-      "required": false,
-      "displayOrder": 0,
-      "placeholder": null,
-      "helpText": null
-    },
-    {
-      "id": "CS-001--size",
-      "productId": "CS-001",
-      "optionName": "Size",
-      "optionType": "Dropdown",
-      "values": [],
-      "required": false,
-      "displayOrder": 0,
-      "placeholder": null,
-      "helpText": null
-    },
-    {
-      "id": "CS-001--theme",
-      "productId": "CS-001",
-      "optionName": "Theme",
-      "optionType": "Dropdown",
-      "values": [],
-      "required": false,
-      "displayOrder": 0,
-      "placeholder": null,
-      "helpText": null
-    },
-    {
-      "id": "FB-001--size",
-      "productId": "FB-001",
-      "optionName": "Size",
-      "optionType": "Dropdown",
-      "values": [],
-      "required": false,
-      "displayOrder": 0,
-      "placeholder": null,
-      "helpText": null
-    },
-    {
-      "id": "FB-002--topping",
-      "productId": "FB-002",
+      "id": "BK-FB-002--topping",
+      "productId": "BK-FB-002",
       "optionName": "Topping",
       "optionType": "Dropdown",
       "values": [],
@@ -117,8 +29,8 @@
       "helpText": null
     },
     {
-      "id": "FP-001--filling",
-      "productId": "FP-001",
+      "id": "BK-FP-001--filling",
+      "productId": "BK-FP-001",
       "optionName": "Filling",
       "optionType": "Dropdown",
       "values": [],
@@ -128,8 +40,8 @@
       "helpText": null
     },
     {
-      "id": "FP-002--filling",
-      "productId": "FP-002",
+      "id": "BK-FP-002--filling",
+      "productId": "BK-FP-002",
       "optionName": "Filling",
       "optionType": "Dropdown",
       "values": [],
@@ -139,8 +51,74 @@
       "helpText": null
     },
     {
-      "id": "RP-001--fabric",
-      "productId": "RP-001",
+      "id": "BK-SB-001--size",
+      "productId": "BK-SB-001",
+      "optionName": "Size",
+      "optionType": "Dropdown",
+      "values": [],
+      "required": false,
+      "displayOrder": 0,
+      "placeholder": null,
+      "helpText": null
+    },
+    {
+      "id": "BK-SB-002--seeds",
+      "productId": "BK-SB-002",
+      "optionName": "Seeds",
+      "optionType": "Dropdown",
+      "values": [],
+      "required": false,
+      "displayOrder": 0,
+      "placeholder": null,
+      "helpText": null
+    },
+    {
+      "id": "SW-BB-001--size",
+      "productId": "SW-BB-001",
+      "optionName": "Size",
+      "optionType": "Dropdown",
+      "values": [],
+      "required": false,
+      "displayOrder": 0,
+      "placeholder": null,
+      "helpText": null
+    },
+    {
+      "id": "SW-BB-001--theme",
+      "productId": "SW-BB-001",
+      "optionName": "Theme",
+      "optionType": "Dropdown",
+      "values": [],
+      "required": false,
+      "displayOrder": 0,
+      "placeholder": null,
+      "helpText": null
+    },
+    {
+      "id": "SW-BE-001--size",
+      "productId": "SW-BE-001",
+      "optionName": "Size",
+      "optionType": "Dropdown",
+      "values": [],
+      "required": false,
+      "displayOrder": 0,
+      "placeholder": null,
+      "helpText": null
+    },
+    {
+      "id": "SW-BH-001--size",
+      "productId": "SW-BH-001",
+      "optionName": "Size",
+      "optionType": "Dropdown",
+      "values": [],
+      "required": false,
+      "displayOrder": 0,
+      "placeholder": null,
+      "helpText": null
+    },
+    {
+      "id": "SW-BH-002--fabric",
+      "productId": "SW-BH-002",
       "optionName": "Fabric",
       "optionType": "Dropdown",
       "values": [],
@@ -150,8 +128,19 @@
       "helpText": null
     },
     {
-      "id": "RP-001--size",
-      "productId": "RP-001",
+      "id": "SW-CS-001--color",
+      "productId": "SW-CS-001",
+      "optionName": "Color",
+      "optionType": "Dropdown",
+      "values": [],
+      "required": false,
+      "displayOrder": 0,
+      "placeholder": null,
+      "helpText": null
+    },
+    {
+      "id": "SW-CS-001--size",
+      "productId": "SW-CS-001",
       "optionName": "Size",
       "optionType": "Dropdown",
       "values": [],
@@ -161,9 +150,9 @@
       "helpText": null
     },
     {
-      "id": "SB-001--size",
-      "productId": "SB-001",
-      "optionName": "Size",
+      "id": "SW-CS-001--theme",
+      "productId": "SW-CS-001",
+      "optionName": "Theme",
       "optionType": "Dropdown",
       "values": [],
       "required": false,
@@ -172,9 +161,20 @@
       "helpText": null
     },
     {
-      "id": "SB-002--seeds",
-      "productId": "SB-002",
-      "optionName": "Seeds",
+      "id": "SW-RP-001--fabric",
+      "productId": "SW-RP-001",
+      "optionName": "Fabric",
+      "optionType": "Dropdown",
+      "values": [],
+      "required": false,
+      "displayOrder": 0,
+      "placeholder": null,
+      "helpText": null
+    },
+    {
+      "id": "SW-RP-001--size",
+      "productId": "SW-RP-001",
+      "optionName": "Size",
       "optionType": "Dropdown",
       "values": [],
       "required": false,

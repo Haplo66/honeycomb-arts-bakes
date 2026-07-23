@@ -404,8 +404,40 @@ Verified:
 * Product detail routes remain functional
 * No build warnings
 
+---
 
-v1.8.2 — Product Pricing Foundation
+# v1.8.2 — Product Pricing Foundation
+
+Status:
+
+Planned
+
+Goal:
+
+Introduce product pricing into the data-driven architecture.
+
+Planned:
+
+* Product price fields in Google Sheets
+* Currency handling
+* Display pricing on product cards
+* Display pricing on product pages
+* Support future order calculations
+
+Architecture:
+
+Products remain the source of truth.
+
+Google Sheets
+      |
+      v
+Pipeline
+      |
+      v
+products.json
+      |
+      v
+Product display components
 
 ---
 
@@ -433,6 +465,18 @@ Home
                         +-- Customization
 ```
 
+
+
+## Data Sync Automation
+
+Future:
+
+- Manual GitHub workflow trigger for data refresh
+- Scheduled Google Sheets synchronization
+- Automatic product/pricing updates
+- Availability synchronization
+
+
 ---
 
 # Upcoming Milestones
@@ -447,49 +491,516 @@ Planned
 
 Goal:
 
-Improve product presentation.
+Improve product presentation and customer experience.
 
-Planned:
+This milestone focuses on making products visually appealing, easier to browse, and ready for future ordering workflows.
 
-* Multiple product images
-* Image ordering
-* Better product galleries
-* Gallery interactions
-* Improved product cards
-* Better collection presentation
-* Featured product sections
-* Homepage product highlights
+Principles:
 
-Focus:
+Keep:
 
-Improve customer experience without changing architecture.
+* Astro static generation
+* Google Sheets as content source
+* Git-based image management
+* Data-driven architecture
+* Simple business workflow
+
+Avoid:
+
+* Backend complexity
+* Manual image URL management
+* Duplicate content systems
+
 
 ---
 
-# v2.0 — Ordering Workflow
+# v1.9.0 — Product Image Architecture Foundation
 
 Status:
 
 Planned
 
+
 Goal:
 
-Create complete customer order experience.
+Create a simple automatic image management system.
 
-Potential features:
+The business owner manages images by adding files to product folders.
 
-* Cart/order collection
-* Customer information
-* Product customization summary
-* Order submission
-* Email notification workflow
-* Order management process
+No image URLs are stored in Google Sheets.
 
-Constraints:
 
-* Keep Astro static architecture
-* Prefer free solutions
-* Avoid unnecessary backend complexity
+## Product ID Convention
+
+Product IDs become globally unique.
+
+Format:
+
+```
+{BusinessArea}-{Collection}-{Number}
+```
+
+Examples:
+
+```
+BK-FP-001
+BK-CA-001
+SW-SH-001
+SW-HAT-001
+```
+
+
+Rules:
+
+* IDs are permanent
+* IDs identify products, not names
+* Product names can change without affecting references
+
+
+---
+
+## Image Folder Structure
+
+```
+public/
+└── images/
+    |
+    ├── products/
+    │
+    │    └── {productId}/
+    │           ├── 01.jpg
+    │           ├── 02.jpg
+    │           ├── 03.jpg
+    │           ├── 04.jpg
+    │           └── 05.jpg
+    │
+    ├── collections/
+    │
+    │    └── {collectionId}/
+    │           └── 01.jpg
+    │
+    ├── business-areas/
+    │
+    │    └── {businessAreaId}/
+    │           └── 01.jpg
+    │
+    └── default-product.jpg
+```
+
+
+---
+
+## Image Rules
+
+Supported format:
+
+```
+.jpg
+```
+
+
+Naming:
+
+```
+01.jpg = primary image
+
+02.jpg - 05.jpg = additional images
+```
+
+
+Limits:
+
+* Maximum 5 images per product
+* Images are optional
+* Missing images are allowed
+
+
+---
+
+## Image Resolution Logic
+
+Priority:
+
+```
+Product image
+        |
+        v
+Collection image
+        |
+        v
+Business area image
+        |
+        v
+Default image
+```
+
+
+Example:
+
+Product:
+
+```
+BK-FP-003
+```
+
+No product folder:
+
+↓
+
+Use:
+
+```
+collections/BK-FP/01.jpg
+```
+
+
+---
+
+## Pipeline Changes
+
+Add:
+
+* Image discovery utility
+* Product image resolver
+* Fallback handling
+* Product type image fields
+
+
+Generated data:
+
+```
+products.json
+```
+
+
+Example:
+
+```json
+{
+  "id": "BK-FP-001",
+  "images": [
+    "/images/products/BK-FP-001/01.jpg",
+    "/images/products/BK-FP-001/02.jpg"
+  ],
+  "primaryImage":
+    "/images/products/BK-FP-001/01.jpg"
+}
+```
+
+
+Warnings:
+
+Example:
+
+```
+WARNING:
+Product BK-FP-003 is using default image.
+```
+
+
+Build behavior:
+
+* Warning only
+* Never fail build
+
+
+---
+
+# v1.9.1 — Product Gallery Component
+
+Status:
+
+Planned
+
+
+Goal:
+
+Improve product detail pages.
+
+
+Add:
+
+* Main product image
+* Thumbnail images
+* Image switching
+* Responsive gallery layout
+* Missing image handling
+
+
+Customer flow:
+
+```
+Product Page
+
+      |
+      v
+
+Gallery
+
+      |
+      +-- Main Image
+      |
+      +-- Additional Images
+
+      |
+      v
+
+Customization
+```
+
+
+---
+
+# v1.9.2 — Product Card Improvements
+
+Status:
+
+Planned
+
+
+Goal:
+
+Improve collection browsing.
+
+
+Add:
+
+* Better product images
+* Improved card layout
+* Short descriptions
+* Visual consistency
+* Optional featured badge
+
+
+Collection view:
+
+Before:
+
+```
+Image
+
+Product Name
+```
+
+
+After:
+
+```
+Image
+
+Product Name
+
+Short Description
+
+Featured indicator
+```
+
+
+---
+
+# v1.9.3 — Collection Presentation Improvements
+
+Status:
+
+Planned
+
+
+Goal:
+
+Make collection pages feel like product catalogs.
+
+
+Add:
+
+* Collection hero images
+* Collection descriptions
+* Improved headers
+* Better product grouping
+* Collection fallback images
+
+
+Example:
+
+```
+Bakery
+
+Filled Pockets
+
+[Collection Image]
+
+Description
+
+Products
+```
+
+---
+
+# v1.9.4 — Homepage Product Highlights
+
+Status:
+
+Planned
+
+
+Goal:
+
+Improve product discovery.
+
+
+Add:
+
+* Featured products
+* Featured collections
+* Bakery highlights
+* Sewing highlights
+
+
+Possible Google Sheet fields:
+
+```
+featured
+displayOrder
+```
+
+
+Example:
+
+```
+Homepage
+
+Featured Bakery
+
+[Product]
+[Product]
+[Product]
+
+
+Featured Sewing
+
+[Product]
+[Product]
+[Product]
+```
+
+
+---
+
+# v1.9.5 — Content Management Refinement
+
+Status:
+
+Planned
+
+
+Goal:
+
+Prepare website content for ordering workflow.
+
+
+Add:
+
+* Better product descriptions
+* Collection descriptions
+* Product availability flags
+* SEO metadata from Google Sheets
+* Improved content consistency
+
+
+Reason:
+
+A reliable ordering system requires customers to trust and understand the products first.
+
+
+---
+
+# v1.9 Completion Criteria
+
+Completed when:
+
+✅ Products support multiple images  
+✅ Images are automatically discovered  
+✅ Fallback image system works  
+✅ Product pages have galleries  
+✅ Collection pages look like catalogs  
+✅ Homepage highlights products  
+✅ Content is ready for ordering workflow
+
+
+Focus:
+
+Improve customer experience without changing architecture.
+
+
+---
+
+## v2.0 — Ordering Workflow
+
+RIPPLE Catalog Sheet
+
+Purpose:
+Website content management
+
+Contains:
+
+Products
+Collections
+Product Options
+Forms
+
+
+RIPPLE Orders Sheet
+
+Purpose:
+Customer transaction records
+
+Contains:
+
+Orders
+Order Items
+Customers (future)
+Payments (future)
+
+
+Order Structure:
+
+Orders sheet:
+
+Order ID
+Customer Information
+Order Status
+Date
+Total
+
+
+Order Items sheet:
+
+Order ID
+Product ID
+Product Name
+Quantity
+Customization Data
+Price
+
+Example:
+
+Orders
+
+RPL-000123
+John Smith
+Pending
+
+
+Order Items
+
+RPL-000123
+Baby Blanket
+Blue
+Name: Emma
+
+RPL-000123
+Custom Shirt
+Size: M
+Theme: Dragon
 
 ---
 

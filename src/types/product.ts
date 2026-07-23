@@ -53,6 +53,9 @@ export interface Product {
   /** Optional primary product image path. */
   image: string | null;
 
+  /** Primary product image, resolved via image fallback hierarchy. */
+  primaryImage: string;
+
   /** All product image paths. */
   images: string[];
 
