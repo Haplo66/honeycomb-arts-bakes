@@ -23,3 +23,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# api key
+/docs/ripple-makes-and-bakes-d69677bf5807.json

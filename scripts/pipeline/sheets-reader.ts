@@ -7,15 +7,41 @@ export interface SheetsReadResult {
   records: CsvRecord[];
 }
 
+const HEADER_MAP: Record<DatasetName, Record<string, string>> = {
+  collections: {
+    'Business Area': 'businessArea',
+    'Collection ID': 'id',
+    'Collection Name': 'name',
+  },
+  products: {
+    'Product ID': 'id',
+    'Business Area': 'businessArea',
+    'Product Name': 'name',
+    'Short Description': 'shortDescription',
+    'Collection': 'collection',
+    'Form ID': 'formId',
+    'Image Folder': 'imageFolder',
+  },
+  forms: {
+    'Form ID': 'id',
+    'Form Name': 'name',
+  },
+};
+
+const normalizeHeader = (header: string, dataset: DatasetName): string =>
+  HEADER_MAP[dataset][header] || header;
+
 const rowToRecord = (
   headers: string[],
   row: unknown[],
   rowIndex: number,
+  dataset: DatasetName,
 ): CsvRecord => {
   const values: Record<string, string> = {};
 
   headers.forEach((header, index) => {
-    values[header] = String(row[index] ?? '');
+    const key = normalizeHeader(header, dataset);
+    values[key] = String(row[index] ?? '');
   });
 
   return { rowNumber: rowIndex + 2, values };
@@ -69,7 +95,7 @@ export async function readSheet(
 
     const records: CsvRecord[] = dataRows
       .filter((row: unknown[]) => row.some((cell) => String(cell ?? '').trim().length > 0))
-      .map((row: unknown[], index: number) => rowToRecord(headers, row, index));
+      .map((row: unknown[], index: number) => rowToRecord(headers, row, index, dataset));
 
     return { found: true, records };
   } catch (error) {
