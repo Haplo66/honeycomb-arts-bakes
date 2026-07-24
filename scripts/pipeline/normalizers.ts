@@ -97,7 +97,7 @@ export const normalizeProducts = (records: CsvRecord[]) =>
     description: values.description,
     status: values.status || 'Active',
     featured: parseBoolean(values.featured),
-    imageFolder: values.imageFolder,
+    homepageFeatured: parseBoolean(values.homepageFeatured),
     formId: values.formId,
     image: parseNullableString(values.image ?? ''),
     images: parsePipeField(values.images ?? ''),

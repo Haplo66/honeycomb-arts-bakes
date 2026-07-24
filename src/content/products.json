@@ -1,7 +1,7 @@
 {
   "_metadata": {
     "generated": true,
-    "generatedAt": "2026-07-24T18:10:00.140Z",
+    "generatedAt": "2026-07-24T19:14:41.359Z",
     "source": "RIPPLE Data Pipeline",
     "version": 1
   },
@@ -15,7 +15,7 @@
       "shortDescription": "Fresh handmade flat bread",
       "status": "Active",
       "featured": false,
-      "imageFolder": "products/BK-FB-001",
+      "homepageFeatured": false,
       "formId": "bakery-bread",
       "image": "01.jpg",
       "images": [
@@ -26,6 +26,7 @@
       "active": true,
       "displayOrder": 0,
       "price": 15,
+      "imageFolder": "products/BK-FB-001",
       "primaryImage": "01.jpg"
     },
     {
@@ -37,7 +38,7 @@
       "shortDescription": "Flat bread with herbs and flavors",
       "status": "Active",
       "featured": false,
-      "imageFolder": "",
+      "homepageFeatured": false,
       "formId": "bakery-bread",
       "image": null,
       "images": [],
@@ -45,6 +46,7 @@
       "active": true,
       "displayOrder": 0,
       "price": 20,
+      "imageFolder": "",
       "primaryImage": ""
     },
     {
@@ -55,8 +57,8 @@
       "name": "Classic Filled Pocket",
       "shortDescription": "Handmade pastry pocket with filling",
       "status": "Active",
-      "featured": true,
-      "imageFolder": "products/BK-FP-001",
+      "featured": false,
+      "homepageFeatured": true,
       "formId": "bakery-filled-pocket",
       "image": "01.jpg",
       "images": [
@@ -69,6 +71,7 @@
       "active": true,
       "displayOrder": 0,
       "price": 5,
+      "imageFolder": "products/BK-FP-001",
       "primaryImage": "01.jpg"
     },
     {
@@ -80,7 +83,7 @@
       "shortDescription": "Sweet chocolate filled pastry",
       "status": "Active",
       "featured": false,
-      "imageFolder": "products/BK-FP-002",
+      "homepageFeatured": false,
       "formId": "bakery-filled-pocket",
       "image": "01.jpg",
       "images": [
@@ -90,6 +93,7 @@
       "active": true,
       "displayOrder": 0,
       "price": 10,
+      "imageFolder": "products/BK-FP-002",
       "primaryImage": "01.jpg"
     },
     {
@@ -100,8 +104,8 @@
       "name": "Classic Sourdough Loaf",
       "shortDescription": "Artisan sourdough bread",
       "status": "Active",
-      "featured": true,
-      "imageFolder": "",
+      "featured": false,
+      "homepageFeatured": false,
       "formId": "bakery-bread",
       "image": null,
       "images": [],
@@ -109,6 +113,7 @@
       "active": true,
       "displayOrder": 0,
       "price": 25,
+      "imageFolder": "",
       "primaryImage": ""
     },
     {
@@ -120,7 +125,7 @@
       "shortDescription": "Sourdough with seeds",
       "status": "Active",
       "featured": false,
-      "imageFolder": "",
+      "homepageFeatured": false,
       "formId": "bakery-bread",
       "image": null,
       "images": [],
@@ -128,6 +133,7 @@
       "active": true,
       "displayOrder": 0,
       "price": 30,
+      "imageFolder": "",
       "primaryImage": ""
     },
     {
@@ -139,7 +145,7 @@
       "shortDescription": "Handmade baby blanket",
       "status": "Active",
       "featured": false,
-      "imageFolder": "",
+      "homepageFeatured": false,
       "formId": "blanket-order",
       "image": null,
       "images": [],
@@ -147,6 +153,7 @@
       "active": true,
       "displayOrder": 0,
       "price": 60,
+      "imageFolder": "",
       "primaryImage": ""
     },
     {
@@ -158,7 +165,7 @@
       "shortDescription": "Handmade winter beanie",
       "status": "Active",
       "featured": false,
-      "imageFolder": "",
+      "homepageFeatured": false,
       "formId": "hat-order",
       "image": null,
       "images": [],
@@ -166,6 +173,7 @@
       "active": true,
       "displayOrder": 0,
       "price": 55,
+      "imageFolder": "",
       "primaryImage": ""
     },
     {
@@ -177,7 +185,7 @@
       "shortDescription": "Handmade bucket hat",
       "status": "Active",
       "featured": false,
-      "imageFolder": "",
+      "homepageFeatured": true,
       "formId": "hat-order",
       "image": null,
       "images": [],
@@ -185,6 +193,7 @@
       "active": true,
       "displayOrder": 0,
       "price": 45,
+      "imageFolder": "",
       "primaryImage": ""
     },
     {
@@ -196,7 +205,7 @@
       "shortDescription": "Handmade children's bucket hat",
       "status": "Active",
       "featured": false,
-      "imageFolder": "",
+      "homepageFeatured": false,
       "formId": "hat-order",
       "image": null,
       "images": [],
@@ -204,6 +213,7 @@
       "active": true,
       "displayOrder": 0,
       "price": 50,
+      "imageFolder": "",
       "primaryImage": ""
     },
     {
@@ -214,8 +224,8 @@
       "name": "Custom Design Shirt",
       "shortDescription": "Personalized handmade shirt",
       "status": "Active",
-      "featured": true,
-      "imageFolder": "products/SW-CS-001",
+      "featured": false,
+      "homepageFeatured": true,
       "formId": "shirt-order",
       "image": "01.jpg",
       "images": [
@@ -226,6 +236,7 @@
       "active": true,
       "displayOrder": 0,
       "price": 35,
+      "imageFolder": "products/SW-CS-001",
       "primaryImage": "01.jpg"
     },
     {
@@ -237,7 +248,7 @@
       "shortDescription": "Matching custom shirts",
       "status": "Active",
       "featured": false,
-      "imageFolder": "",
+      "homepageFeatured": true,
       "formId": "shirt-order",
       "image": null,
       "images": [],
@@ -245,6 +256,7 @@
       "active": true,
       "displayOrder": 0,
       "price": 40,
+      "imageFolder": "",
       "primaryImage": ""
     },
     {
@@ -256,7 +268,7 @@
       "shortDescription": "Handmade heating/cooling pack",
       "status": "Active",
       "featured": false,
-      "imageFolder": "",
+      "homepageFeatured": false,
       "formId": "rice-pack-order",
       "image": null,
       "images": [],
@@ -264,6 +276,7 @@
       "active": true,
       "displayOrder": 0,
       "price": 65,
+      "imageFolder": "",
       "primaryImage": ""
     }
   ]

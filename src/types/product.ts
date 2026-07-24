@@ -59,9 +59,6 @@ export interface Product {
   /** All product image paths. */
   images: string[];
 
-  /** Folder that contains product imagery in future asset-backed imports. */
-  imageFolder?: string;
-
   /** Placeholder styling when image is unavailable. */
   imageTone?: CollectionImageTone;
 
@@ -70,6 +67,9 @@ export interface Product {
   active: boolean;
 
   featured: boolean;
+
+  /** Flagged for spotlight placement on the homepage. */
+  homepageFeatured: boolean;
 
   displayOrder: number;
 

@@ -14,7 +14,7 @@ interface ProductRecord {
   description?: string;
   status: string;
   featured: boolean;
-  imageFolder: string;
+  homepageFeatured: boolean;
   formId: string;
   image: string | null;
   primaryImage: string;
@@ -61,11 +61,11 @@ const toProduct = (record: ProductRecord): Product => {
     image: record.image || images[0] || null,
     primaryImage: record.primaryImage || '',
     images,
-    imageFolder: record.imageFolder,
     imageTone: (record.imageTone || 'cream') as CollectionImageTone,
     status: statusMap[record.status] || 'available',
     active: record.active ?? true,
     featured: record.featured ?? false,
+    homepageFeatured: record.homepageFeatured ?? false,
     displayOrder: record.displayOrder ?? 0,
     formId: record.formId,
     price: record.price,
@@ -108,6 +108,10 @@ export const getProductsByBusinessArea = (
 /** Returns active featured products sorted by display order. */
 export const getFeaturedProducts = (): Product[] =>
   orderedActive(products.filter((product) => product.featured));
+
+/** Returns active homepage-featured products sorted by display order. */
+export const getHomepageFeatured = (): Product[] =>
+  orderedActive(products.filter((product) => product.homepageFeatured));
 
 /** Returns a product by unique ID, including inactive records. */
 export const getProductById = (id: string): Product | undefined =>

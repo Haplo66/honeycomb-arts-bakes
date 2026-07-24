@@ -4,25 +4,27 @@ import { sitePath } from './paths';
 
 const buildImageUrl = (path: string): string => sitePath(`images/${path}`);
 
-const primaryFromImages = (images: string[], imageFolder?: string): string | null => {
+const productImageFolder = (id: string): string => `products/${id}`;
+
+const primaryFromImages = (images: string[], folder?: string): string | null => {
   if (images.length === 0) return null;
-  const path = imageFolder ? `${imageFolder}/${images[0]}` : images[0];
+  const path = folder ? `${folder}/${images[0]}` : images[0];
   return buildImageUrl(path);
 };
 
-const allFromImages = (images: string[], imageFolder?: string): string[] => {
+const allFromImages = (images: string[], folder?: string): string[] => {
   if (images.length === 0) return [];
   return images.map((filename) => {
-    const path = imageFolder ? `${imageFolder}/${filename}` : filename;
+    const path = folder ? `${folder}/${filename}` : filename;
     return buildImageUrl(path);
   });
 };
 
 export const getProductImages = (product: Product): string[] =>
-  allFromImages(product.images, product.imageFolder);
+  allFromImages(product.images, productImageFolder(product.id));
 
 export const getProductPrimaryImage = (product: Product): string | null =>
-  primaryFromImages(product.images, product.imageFolder);
+  primaryFromImages(product.images, productImageFolder(product.id));
 
 export const getCollectionImages = (collection: Collection): string[] =>
   allFromImages(collection.images || [], collection.imageFolder);
