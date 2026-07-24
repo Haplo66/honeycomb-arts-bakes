@@ -14,6 +14,7 @@ The site runs at the URL shown by Astro. For this project’s background workflo
 ## Build
 
 ```bash
+npm run import:data
 npm run build
 ```
 
