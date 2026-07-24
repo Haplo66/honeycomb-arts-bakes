@@ -1,7 +1,7 @@
 {
   "_metadata": {
     "generated": true,
-    "generatedAt": "2026-07-24T17:45:19.322Z",
+    "generatedAt": "2026-07-24T18:10:00.140Z",
     "source": "RIPPLE Data Pipeline",
     "version": 1
   },
@@ -55,7 +55,7 @@
       "name": "Classic Filled Pocket",
       "shortDescription": "Handmade pastry pocket with filling",
       "status": "Active",
-      "featured": false,
+      "featured": true,
       "imageFolder": "products/BK-FP-001",
       "formId": "bakery-filled-pocket",
       "image": "01.jpg",
@@ -100,7 +100,7 @@
       "name": "Classic Sourdough Loaf",
       "shortDescription": "Artisan sourdough bread",
       "status": "Active",
-      "featured": false,
+      "featured": true,
       "imageFolder": "",
       "formId": "bakery-bread",
       "image": null,
@@ -214,7 +214,7 @@
       "name": "Custom Design Shirt",
       "shortDescription": "Personalized handmade shirt",
       "status": "Active",
-      "featured": false,
+      "featured": true,
       "imageFolder": "products/SW-CS-001",
       "formId": "shirt-order",
       "image": "01.jpg",
