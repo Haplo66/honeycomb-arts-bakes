@@ -4,46 +4,47 @@
 
 RIPPLE Bakes & Makes is an Astro static website deployed on GitHub Pages.
 
-The website supports two business areas:
+Purpose:
 
-- Bakery
-- Sewing
+* Beautiful handmade product catalog
+* Simple business maintenance workflow
+* Future-ready inquiry/order workflow
 
-The goal is to provide a beautiful product catalog experience while keeping the business workflow simple and maintainable.
+Business areas:
 
-Current stack:
+* Bakery
+* Sewing
 
-- Astro 6.4.8
-- TypeScript
-- GitHub Pages
-- Google Sheets as business content source
-- Static site generation
+Stack:
+
+* Astro 6.4.8
+* TypeScript
+* GitHub Pages
+* Google Sheets content source
+* Static site generation
 
 Repository:
 
-- Branch: `master`
-- Base path: `/ripple-bakes-makes`
+* Branch: `master`
+* Base path: `/ripple-bakes-makes`
 
 ---
 
 # Development Philosophy
 
-## Principles
-
 Keep:
 
-- Astro static generation
-- Google Sheets as the business-friendly data source
-- TypeScript transformations inside the build pipeline
-- Simple maintenance workflow
-- Free solutions only
+* Static Astro architecture
+* Google Sheets as business content source
+* TypeScript transformation pipeline
+* Simple maintenance workflow
+* Free solutions
 
 Avoid:
 
-- Unnecessary backend complexity
-- Paid services
-- Technical fields exposed to business users
-- Overengineering before business needs require it
+* Unnecessary backend complexity
+* Duplicate data systems
+* Manual technical maintenance
 
 ---
 
@@ -51,29 +52,28 @@ Avoid:
 
 Use ChatGPT for:
 
-- Architecture
-- Planning
-- Reviews
-- Implementation prompts
+* Architecture
+* Planning
+* Reviews
+* Implementation prompts
 
-Use DeepSeek/Codex-style tools for:
+Use DeepSeek/Codex tools for:
 
-- Code implementation
-- Refactoring
-- Testing
+* Implementation
+* Refactoring
+* Testing
 
-Implementation prompts should:
+Implementation prompts:
 
-- Be a single copy/paste markdown block
-- Clearly define scope
-- Recommend model/effort when useful
+* Single markdown block
+* Clear scope
+* Minimal unnecessary planning
 
-Current preferred implementation model:
+Preferred implementation:
 
-- DeepSeek V4 Flash Free
-- High Thinking
-- Build mode for implementation tasks
-- Planning mode for architecture decisions
+* DeepSeek V4 Flash Free
+* High Thinking
+* Build mode
 
 ---
 
@@ -85,11 +85,10 @@ Current preferred implementation model:
 Google Sheets
       |
       v
-Pipeline
+Import Pipeline
       |
       v
-Generated Content
-      |
+Generated Data
       |
       +-- Products
       +-- Collections
@@ -97,304 +96,117 @@ Generated Content
       +-- Forms
       |
       v
-Astro Pages + Components
+Astro Components
       |
       v
 Static Website
 ```
 
-## Business Data Source
-
-Google Sheets manages:
-
-- Products
-- Collections
-- Product options
-- Forms
-
-Technical processing remains inside the TypeScript pipeline.
-
 ---
 
 # Completed Milestones
 
----
-
-# v1.5 — Google Sheets Pipeline
+## v1.5 — Google Sheets Pipeline
 
 Status:
 
 ✅ Completed
 
-Goal:
-
-Create a business-friendly content management workflow.
-
 Implemented:
 
-- Google Sheets integration
-- Authentication support
-- Data reader abstraction
-- CSV fallback support
-- Import pipeline
-
-Result:
-
-Business data can be maintained without editing code.
+* Google Sheets integration
+* Import pipeline
+* CSV fallback
+* Data normalization
 
 ---
 
-# v1.5.1 — Product Slug Generation
+## v1.6 — RIPPLE Rebranding
 
 Status:
 
 ✅ Completed
 
-Goal:
-
-Support Astro dynamic routes without exposing technical fields.
-
 Implemented:
 
-- Automatic slug generation during import
-- Product routing support
-- Name changes without breaking references
+* Honeycomb → RIPPLE rebrand
+* Logo system
+* Header/footer branding
+* Favicon updates
 
-Example:
-
-```
-Personalized Baby Blanket
-```
-
-becomes:
+Logo structure:
 
 ```
-personalized-baby-blanket
+public/
+└── images/
+    └── logo/
+        ├── ripple-logo-transparent.png
+        ├── ripple-logo.png
+        └── ripple-symbol.png
 ```
 
 ---
 
-# v1.6 — RIPPLE Rebranding
+## v1.7 — Product Options Integration
 
 Status:
 
 ✅ Completed
 
-Goal:
-
-Replace Honeycomb Arts & Bakes branding with RIPPLE Bakes & Makes.
-
 Implemented:
 
-- Repository rename
-- Logo updates
-- Favicon updates
-- Header/footer branding system
-
-Logo handling:
-
-Header:
-
-```
-ripple-logo-transparent.png
-```
-
-Footer:
-
-```
-ripple-logo.png
-```
+* Product option data source
+* Import support
+* Validation
+* Product option lookup
 
 ---
 
-# v1.7 — Product Options Integration
+## v1.8 — Dynamic Customization Forms
 
 Status:
 
 ✅ Completed
 
-Goal:
-
-Connect product customization options from Google Sheets into the product architecture.
-
 Implemented:
 
-- Product Options data source
-- Import pipeline support
-- Validation
-- Normalization
-- Product option lookup
+* Dynamic product forms
+* Required fields
+* Display ordering
+* Help text
 
-Architecture decision:
-
-Product options reference products using:
-
-```
-productId
-```
-
-Products remain the source of truth.
-
----
-
-# v1.8 — Dynamic Customization Forms
-
-Status:
-
-✅ Completed
-
-Goal:
-
-Generate product customization forms dynamically.
-
-Implemented:
-
-- Product option conversion
-- Dynamic form fields
-- Required fields
-- Ordering/display rules
-- Help text support
-
-Architecture:
+Flow:
 
 ```
 Product Options
         |
         v
-Generated Form Fields
-        |
-        v
 Form Renderer
 ```
 
-Behavior:
+---
 
-- Products with options generate forms automatically.
-- Existing forms remain as fallback.
+# v1.9 — Product Experience Improvements
+
+Goal:
+
+Create a polished handmade boutique catalog experience.
 
 ---
 
-# v1.8.1 — Product Collection Display
+## v1.9.0 — Product Image Architecture
 
 Status:
 
 ✅ Completed
-
-Goal:
-
-Connect collections with product browsing.
 
 Implemented:
 
-- Dynamic product loading
-- Product grids
-- Product cards
-- Collection-to-product flow
+* Automatic image discovery
+* Product image folders
+* Image fallback handling
 
-Customer flow:
-
-```
-Collection
-     |
-     v
-Products
-     |
-     v
-Product Detail
-```
-
----
-
-# v1.8.2 — Product Pricing Foundation
-
-Status:
-
-✅ Completed
-
-Goal:
-
-Introduce product pricing into the data-driven system.
-
-Implemented:
-
-- Product pricing fields
-- Currency handling
-- Pricing display support
-
-Architecture:
-
-```
-Google Sheets
-      |
-      v
-Pipeline
-      |
-      v
-Products Data
-      |
-      v
-Website Display
-```
-
----
-
-# v1.9 — Product Gallery & Content Improvements
-
-Status:
-
-🚧 In Progress
-
-Goal:
-
-Improve product presentation and prepare the website for future ordering workflows.
-
-Principles:
-
-Keep:
-
-- Astro static generation
-- Google Sheets workflow
-- Data-driven architecture
-- Simple maintenance
-
-Avoid:
-
-- Backend complexity
-- Duplicate content systems
-- Manual technical workflows
-
----
-
-# v1.9.0 — Product Image Architecture Foundation
-
-Status:
-
-✅ Completed
-
-Goal:
-
-Create a simple product image management system.
-
-Design:
-
-The business owner manages images by adding files to product folders.
-
-No image URLs are stored in Google Sheets.
-
-Product ID convention:
-
-```
-{BusinessArea}-{Collection}-{Number}
-```
-
-Examples:
-
-```
-BK-FP-001
-SW-SH-001
-```
-
-Image structure:
+Structure:
 
 ```
 public/
@@ -411,26 +223,96 @@ Image priority:
 ```
 Product Image
       |
-      v
 Collection Image
       |
-      v
 Business Area Image
       |
-      v
-Default Image
+Fallback
 ```
-
-Implemented:
-
-- Image discovery
-- Product image resolver
-- Fallback handling
-- Product image data fields
 
 ---
 
-# v1.9.1 — Product Gallery Component
+## v1.9.1 — Product Gallery
+
+Status:
+
+✅ Completed
+
+Implemented:
+
+* Product image gallery
+* Thumbnail navigation
+* Responsive layout
+* Multiple images per product
+
+Current behavior:
+
+* Default gallery support up to 12 images
+* Flagship products can showcase larger collections
+
+---
+
+## v1.9.1.1 — Product Page Polish
+
+Status:
+
+✅ Completed
+
+Implemented:
+
+* Balanced product layout
+* Improved spacing
+* Better typography
+* Boutique presentation style
+
+---
+
+## v1.9.2 — Catalog Experience Improvements
+
+Status:
+
+✅ Completed
+
+Implemented:
+
+* Fixed bakery/sewing discovery flow
+* Featured products
+* Related products
+* Improved breadcrumbs
+* Improved descriptions
+* Improved product cards
+
+Architecture:
+
+* Existing Product model reused
+* No unnecessary components
+* Static architecture preserved
+
+---
+
+## v1.9.3 — Collection Presentation Improvements
+
+Status:
+
+✅ Completed
+
+Implemented:
+
+* "Ask About This Collection" inquiry CTA
+* Better collection descriptions
+* Collection subtitles
+* Popular ideas
+* Customization notes
+* Removed empty sections
+* Improved collection presentation
+
+Architecture:
+
+* Existing Collection model reused
+
+---
+
+## v1.9.4 — Homepage Brand Experience
 
 Status:
 
@@ -438,251 +320,130 @@ Status:
 
 Goal:
 
-Improve product detail pages with visual product galleries.
+Make the homepage feel like a boutique storefront.
 
 Implemented:
 
-- Main product image
-- Thumbnail images
-- Image switching
-- Responsive gallery
-- Missing image handling
+* Large RIPPLE logo hero presentation
+* Hero product image
+* Featured creations section
+* Data-driven homepage products
+* Improved CTA wording
+* Removed placeholder messaging
+* Preserved cart navigation
+
+Homepage structure:
 
 ```
-Product Page
+Hero Brand Area
 
+        |
+        v
+
+Featured Creations
+
+        |
+        v
+
+Fresh from Kitchen & Studio
+
+        |
+        v
+
+Services + Brand Story
+```
+
+Additional improvements:
+
+* Added `homepageFeatured` product selection
+* Homepage products are data-driven
+* Improved handmade typography
+* Added home hero image structure
+
+---
+
+# v1.9.5 — Content & Asset Refinement
+
+Status:
+
+🚧 Current
+
+Goal:
+
+Improve photography, branding, and content quality.
+
+## Hero Images
+
+Structure:
+
+```
+public/
+└── images/
+    └── home/
+        └── hero/
+            ├── hero-01.jpg
+            ├── hero-02.jpg
+            └── hero-03.jpg
+```
+
+Purpose:
+
+Support future seasonal or rotating hero images.
+
+---
+
+## Gallery Images
+
+Structure:
+
+```
+public/
+└── images/
+    └── gallery/
+        ├── morning-loaves.jpg
+        ├── stitched-care.jpg
+        ├── autumn-tables.jpg
+        ├── little-sweetness.jpg
+        └── everyday-heirlooms.jpg
+```
+
+Behavior:
+
+```
+Image exists
       |
       v
+Display photo
 
-Gallery
-
+No image
       |
-      +-- Main Image
-      |
-      +-- Additional Images
+      v
+Display fallback design
 ```
 
-# v1.9.1.1 — Product Page Layout Polish
-
-Status:
-
-🚧 In Progress
-
-Goal:
-
-Improve the product detail page layout after completing the gallery system.
-
-The gallery functionality is complete. This milestone focuses on product presentation and brand experience.
-
-Objectives:
-
-- Create a balanced desktop product hero layout
-- Display product image and product information together
-- Improve visual hierarchy
-- Reduce oversized image dominance
-- Improve spacing and typography
-- Maintain RIPPLE boutique handmade style
-
-Desktop direction:
-
-```
-Product Gallery        Product Information
-
-Main Image             Category
-                       Product Name
-Thumbnails             Price
-                       Description
-                       Customization
-```
-
-Mobile direction:
-
-```
-Image
-
-Thumbnails
-
-Category
-
-Product Name
-
-Price
-
-Description
-
-Customization
-```
-
-Keep:
-
-- Existing gallery component
-- Existing data architecture
-- Existing product flow
-- RIPPLE typography direction
-
-Avoid:
-
-- Architecture changes
-- New backend requirements
-- Unnecessary components
-
----
-
-# Upcoming Milestones
-
----
-
-# v1.9.2 — Catalog Experience Improvements
-
-Status:
-
-✅ Completed
-
-Goal:
-
-Improve product discovery and make the catalog feel like a connected handmade boutique experience.
-
-Implemented:
-
-- Fixed bakery and sewing product discovery flow
-- Added featured product sections using existing data model
-- Improved product detail breadcrumbs
-- Added "More from this collection" related products
-- Improved product descriptions and subtitles
-- Preserved existing ProductCard/ProductGrid architecture
-- Maintained static Astro architecture
-
-Architecture:
-
-- No new components introduced
-- No new data fields introduced
-- Existing Product model reused
-- Existing routing preserved
-
-Validation:
-
-- npm run build successful
-- 31 pages generated
-- 0 errors
-- 0 warnings
----
-
-
-# v1.9.3 — Collection Presentation Improvements
-
-Status:
-
-✅ Completed
-
-Goal:
-
-Make collections feel like polished handmade product catalog pages.
-
-Implemented:
-
-- Added consistent collection inquiry CTA:
-  "Ask About This Collection"
-- Improved collection hero presentation
-- Added meaningful collection subtitles
-- Improved collection descriptions
-- Added collection ideas and customization notes
-- Added image tone variety
-- Removed empty collection sections
-- Improved bakery and sewing collection messaging
-
-Architecture:
-
-- No new data fields
-- No new components
-- Existing Collection model reused
-- Existing static Astro architecture preserved
-
-Validation:
-
-- npm run build successful
-- 31 pages generated
-- 0 errors
-- 0 warnings
-
----
-
-# v1.9.4 — Homepage Product Highlights & Brand Experience
-
-Status:
-
-✅ Completed
-
-Goal:
-
-Transform the homepage into a boutique storefront that introduces the RIPPLE brand and improves product discovery while maintaining the inquiry-based customer workflow.
-
-Implemented:
-
-- Added featured products section to homepage
-- Connected homepage discovery to existing featured product system
-- Improved RIPPLE hero branding with ripple symbol accent
-- Updated homepage CTAs to match inquiry workflow
-- Removed customer-facing placeholder wording
-- Improved bakery/sewing CTA wording
-- Fixed homepage content quality issues
-- Preserved cart navigation as part of future inquiry workflow
-
-Architecture:
-
-- Reused existing ProductGrid/ProductCard components
-- Reused existing product data and featured flags
-- No new data fields
-- No new backend requirements
-- Cart functionality preserved for future order-request workflow
-
-Validation:
-
-- npm run build successful
-- 31 pages generated
-- 0 errors
-
----
-
-# v1.9.5 — Content Management Refinement
-
-Status:
-
-Planned
-
-Goal:
-
-Prepare product content for ordering workflows.
-
-Planned:
-
-- Better product descriptions
-- Collection descriptions
-- Product availability flags
-- SEO metadata
-- Content consistency improvements
-
-Reason:
-
-A reliable ordering system requires customers to understand and trust the products first.
+Remaining:
+
+* Add real gallery photography
+* Improve homepage visuals
+* Continue brand refinement
 
 ---
 
 # v1.9 Completion Criteria
 
-Completed when:
+Completed:
 
-✅ Products support multiple images  
-✅ Images are automatically discovered  
-✅ Image fallback system works  
-✅ Product pages have galleries  
-✅ Product pages have polished presentation  
-✅ Collection pages feel like catalogs  
-✅ Homepage highlights products  
-✅ Content is ready for ordering workflow  
+✅ Product image system
+✅ Product galleries
+✅ Product detail experience
+✅ Collection catalog experience
+✅ Homepage storefront experience
+✅ Data-driven featured products
+✅ Inquiry-based customer flow
 
 ---
 
-# v2.0 — Ordering Workflow
+# v2.0 — Inquiry & Ordering Workflow
 
 Status:
 
@@ -690,107 +451,67 @@ Future
 
 Goal:
 
-Introduce customer ordering and business order management.
+Create a simple customer inquiry and order management workflow.
 
-Architecture:
+Principle:
 
-Separate catalog data from transaction data.
+Keep catalog data separate from transaction data.
 
----
+## Catalog Data
 
-## Catalog Sheet
-
-Purpose:
-
-Website content management.
+Managed through Google Sheets.
 
 Contains:
 
-- Products
-- Collections
-- Product Options
-- Forms
+* Products
+* Collections
+* Product Options
+* Forms
 
----
+## Inquiry / Orders Data
 
-## Orders Sheet
-
-Purpose:
-
-Customer transaction records.
+Separate workflow.
 
 Contains:
 
-- Orders
-- Order Items
-- Customer information (future)
-- Payments (future)
-
----
-
-## Order Structure
-
-Orders:
-
-```
-Order ID
-Customer Information
-Order Status
-Date
-Total
-```
-
-Order Items:
-
-```
-Order ID
-Product ID
-Product Name
-Quantity
-Customization Data
-Price
-```
+* Customer inquiries
+* Orders
+* Order items
+* Status tracking
 
 Example:
 
 ```
-Order:
+Orders
 
-RPL-000123
-John Smith
-Pending
-
-
-Items:
-
-Baby Blanket
-Blue
-Name: Emma
+Order ID
+Customer
+Status
+Date
 
 
-Custom Shirt
-Size: M
-Theme: Dragon
+Order Items
+
+Order ID
+Product ID
+Quantity
+Customization
+Price
 ```
 
 ---
 
-# v2.x — Business Management Improvements
-
-Status:
-
-Future
+# Future v2.x Improvements
 
 Possible improvements:
 
-- Inventory management
-- Availability tracking
-- Improved Google Sheets workflows
-- Order history
-- Customer communication tools
-- Analytics
+* Inventory tracking
+* Availability management
+* Customer history
+* Analytics
+* Business workflow tools
 
-Only implement when business needs justify additional complexity.
+Only add complexity when business needs require it.
 
 ---
 
@@ -799,19 +520,24 @@ Only implement when business needs justify additional complexity.
 Completed:
 
 ```
-v1.9.0   Product Image Architecture              ✅
-v1.9.1   Product Gallery                         ✅
-v1.9.1.1 Product Page Layout Polish              ✅
-v1.9.2   Catalog Experience Improvements         ✅
-v1.9.3   Collection Presentation Improvements    ✅
-v1.9.4   Homepage Product Highlights             ✅
+v1.9.0   Product Image Architecture        ✅
+v1.9.1   Product Gallery                   ✅
+v1.9.1.1 Product Page Polish               ✅
+v1.9.2   Catalog Experience                 ✅
+v1.9.3   Collection Experience              ✅
+v1.9.4   Homepage Brand Experience          ✅
 ```
 
-Upcoming:
+Current:
 
 ```
-v1.9.5     Content Management Refinement           ⏳
-v2.0       Ordering Workflow                       ⏳
+v1.9.5   Content & Asset Refinement         🚧
+```
+
+Future:
+
+```
+v2.0     Inquiry / Ordering Workflow        ⏳
 ```
 
 ---
@@ -831,21 +557,5 @@ Dynamic Astro Website
 Product Discovery + Customization
       |
       v
-Future Ordering Workflow
-```
-
----
-
-# Next Objective
-
-Complete:
-
-```
-v1.9.1.1 — Product Page Layout Polish
-```
-
-Then continue with:
-
-```
-v1.9.2 — Product Card Improvements
+Future Inquiry / Ordering Workflow
 ```

@@ -6,9 +6,9 @@ Status:
 Approved
 
 Files (place new assets here):
-- `public/ripple-logo.png` – Primary RIPPLE logo
-- `public/ripple-logo-transparent.png` – Transparent variant
-- `public/ripple-symbol.png` – Icon-only symbol
+- `public/images/logo/ripple-logo.png` – Primary RIPPLE logo
+- `public/images/logo/ripple-logo-transparent.png` – Transparent variant
+- `public/images/logo/ripple-symbol.png` – Icon-only symbol
 
 Usage:
 

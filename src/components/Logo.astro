@@ -3,7 +3,7 @@ import { sitePath } from '../utils/paths';
 
 const { compact = false, variant = 'header' } = Astro.props;
 
-const logoSrc = variant === 'footer' ? 'ripple-logo.png' : 'ripple-logo-transparent.png';
+const logoSrc = variant === 'footer' ? 'images/logo/ripple-logo.png' : 'images/logo/ripple-logo-transparent.png';
 ---
 <a class:list={['logo',{compact}]} href={sitePath()} aria-label="RIPPLE Bakes & Makes home">
   <img src={sitePath(logoSrc)} alt="RIPPLE Bakes & Makes" />
