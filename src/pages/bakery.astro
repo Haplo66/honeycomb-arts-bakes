@@ -4,10 +4,11 @@ import SectionTitle from '../components/SectionTitle.astro';
 import CollectionGrid from '../components/CollectionGrid.astro';
 import ProductGrid from '../components/products/ProductGrid.astro';
 import { getBakeryCollections } from '../data/collections';
-import { getProductsByCollection } from '../data/products';
+import { getProductsByBusinessArea, getFeaturedProducts } from '../data/products';
 
 const bakeryCollections = getBakeryCollections();
-const bakeryProducts = getProductsByCollection('bakery-cakes');
+const bakeryProducts = getProductsByBusinessArea('bakery');
+const featuredProducts = getFeaturedProducts();
 ---
 
 <MainLayout title="Artisan Bakery | RIPPLE Bakes & Makes" description="Small-batch breads, cookies, cakes, seasonal treats, and custom bakery orders.">
@@ -25,6 +26,15 @@ const bakeryProducts = getProductsByCollection('bakery-cakes');
       <CollectionGrid collections={bakeryCollections}/>
     </div>
   </section>
+
+  {featuredProducts.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <SectionTitle eyebrow="Featured" title="Curated <em>favourites.</em>" text="A few handpicked selections from our kitchen."/>
+        <ProductGrid products={featuredProducts}/>
+      </div>
+    </section>
+  )}
 
   <section class="section section--paper">
     <div class="container">

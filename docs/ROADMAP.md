@@ -536,149 +536,37 @@ Avoid:
 
 Status:
 
-🚧 In Progress
+✅ Completed
 
 Goal:
 
-Improve the product browsing experience while preserving the existing data-driven architecture.
-
----
-
-## v1.9.2.1 — Product Card Enhancement
-
-Status:
-
-✅ Completed
+Improve product discovery and make the catalog feel like a connected handmade boutique experience.
 
 Implemented:
 
-- Improved product card visual hierarchy
-- Improved product title prominence
-- Improved price visibility
-- Moved price into normal content flow
-- Improved description scanning
-- Improved CTA interaction
-- Fixed duplicate CTA rendering issue
-- Added narrow-screen responsive improvements
+- Fixed bakery and sewing product discovery flow
+- Added featured product sections using existing data model
+- Improved product detail breadcrumbs
+- Added "More from this collection" related products
+- Improved product descriptions and subtitles
+- Preserved existing ProductCard/ProductGrid architecture
+- Maintained static Astro architecture
 
 Architecture:
 
-- Existing ProductCard structure preserved
-- Existing Product interface preserved
+- No new components introduced
+- No new data fields introduced
+- Existing Product model reused
 - Existing routing preserved
-- Existing formatting utilities reused
 
 Validation:
 
 - npm run build successful
 - 31 pages generated
-- No errors or warnings
-
+- 0 errors
+- 0 warnings
 ---
 
-## v1.9.2.2 — Catalog Grid Improvements
-
-Goal:
-
-Improve browsing across all collection pages.
-
-Planned:
-
-- Responsive grid spacing
-- Better desktop layout
-- Improved mobile layout
-- Equal-height cards
-- Better visual balance
-- Empty-state handling
-
-Result:
-
-Collections feel organized and easy to browse.
-
----
-
-## v1.9.2.3 — Product Badges & Metadata
-
-Goal:
-
-Display useful product information directly from the catalog.
-
-Planned:
-
-- Featured products
-- Optional "New" badge
-- Optional "Best Seller" badge
-- Optional "Seasonal" badge
-- Product availability indicators (future-ready)
-
-Architecture:
-
-Metadata remains data-driven through Google Sheets.
-
----
-
-## v1.9.2.4 — Image Presentation Polish
-
-Goal:
-
-Improve consistency across all catalog images.
-
-Planned:
-
-- Consistent image ratios
-- Improved cropping
-- Better placeholder handling
-- Rounded corners
-- Optimized responsive images
-- Lazy loading
-
-Result:
-
-Products maintain a consistent visual appearance throughout the site.
-
----
-
-## v1.9.2.5 — Accessibility & Performance
-
-Goal:
-
-Improve usability and page performance.
-
-Planned:
-
-- Keyboard navigation
-- Focus indicators
-- Better alt text
-- Accessible headings
-- Improved touch targets
-- Reduced layout shift
-- Responsive image optimization
-
-Result:
-
-The catalog is faster, more accessible, and easier to navigate.
-
----
-
-# v1.9.2 Completion Criteria
-
-Completed when:
-
-✅ Product cards use the new reusable design
-
-✅ Collection grids are fully responsive
-
-✅ Product metadata displays correctly
-
-✅ Images are visually consistent
-
-✅ Accessibility improvements are implemented
-
-✅ Performance optimizations are complete
-
-✅ All catalog pages use the shared card component
-
----
 
 # v1.9.3 — Collection Presentation Improvements
 

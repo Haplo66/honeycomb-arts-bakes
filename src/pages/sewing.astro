@@ -4,10 +4,11 @@ import SectionTitle from '../components/SectionTitle.astro';
 import CollectionGrid from '../components/CollectionGrid.astro';
 import ProductGrid from '../components/products/ProductGrid.astro';
 import { getSewingCollections } from '../data/collections';
-import { getProductsByCollection } from '../data/products';
+import { getProductsByBusinessArea, getFeaturedProducts } from '../data/products';
 
 const sewingCollections = getSewingCollections();
-const sewingProducts = getProductsByCollection('sewing-custom-sewing');
+const sewingProducts = getProductsByBusinessArea('sewing');
+const featuredProducts = getFeaturedProducts();
 ---
 
 <MainLayout title="Sewing & Handmade Crafts | RIPPLE Bakes & Makes" description="Custom sewing, repairs, personalized gifts, textile creations, and seasonal handmade crafts.">
@@ -25,6 +26,15 @@ const sewingProducts = getProductsByCollection('sewing-custom-sewing');
       <CollectionGrid collections={sewingCollections}/>
     </div>
   </section>
+
+  {featuredProducts.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <SectionTitle eyebrow="Featured" title="Curated <em>favourites.</em>" text="Handpicked pieces from our handmade studio."/>
+        <ProductGrid products={featuredProducts}/>
+      </div>
+    </section>
+  )}
 
   <section class="section section--paper">
     <div class="container">

@@ -2,7 +2,9 @@
 import MainLayout from '../../../layouts/MainLayout.astro';
 import FormRenderer from '../../../components/forms/FormRenderer.astro';
 import ProductGallery from '../../../components/products/ProductGallery.astro';
-import { getAllProducts } from '../../../data/products';
+import ProductGrid from '../../../components/products/ProductGrid.astro';
+import SectionTitle from '../../../components/SectionTitle.astro';
+import { getAllProducts, getProductsByCollection } from '../../../data/products';
 import { collections } from '../../../data/collections';
 import { getProductOptions } from '../../../data/product-options';
 import { productOptionsToFormFields } from '../../../utils/options-to-fields';
@@ -68,6 +70,9 @@ const businessAreaTitle =
     ? 'Bakery'
     : 'Sewing Studio';
 
+const matchedCollection = collections.find(c => c.id === product.collectionId);
+const relatedProducts = getProductsByCollection(product.collectionId).filter(p => p.id !== product.id);
+
 const options = getProductOptions(product.id);
 const displayPrice = formatPrice(product.price) || product.priceLabel;
 const customizationFields = productOptionsToFormFields(options);
@@ -92,6 +97,15 @@ const customizationForm: Form | undefined = customizationFields.length > 0
         <a href={sitePath(product.businessArea)}>
           {businessAreaTitle}
         </a>
+
+        {matchedCollection && (
+          <>
+            <span class="separator" aria-hidden="true">/</span>
+            <a href={sitePath(`${product.businessArea}/${matchedCollection.slug}`)}>
+              {matchedCollection.title}
+            </a>
+          </>
+        )}
 
         <span class="separator" aria-hidden="true">/</span>
 
@@ -177,6 +191,18 @@ const customizationForm: Form | undefined = customizationFields.length > 0
       </div>
     </div>
   </div>
+
+  {relatedProducts.length > 0 && (
+    <section class="section section--paper">
+      <div class="container">
+        <SectionTitle
+          eyebrow="More to explore"
+          title={`More from <em>${matchedCollection?.title?.toLowerCase() || 'this collection'}.</em>`}
+        />
+        <ProductGrid products={relatedProducts} />
+      </div>
+    </section>
+  )}
 </MainLayout>
 
 <style>
